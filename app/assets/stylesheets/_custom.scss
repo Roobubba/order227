@@ -1,0 +1,27 @@
+@import "bootstrap";
+
+.navbar-default {
+    color: #F0F0F0;
+    background-color: #0F0F0F;
+    background-image: none;
+    background-repeat: no-repeat;
+ }
+ 
+#logo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+    margin-right: 10px;
+    font-size: 2em;
+    color: #F0F0F0;
+    background-color: #0F0F0F;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+}
+
+#logo:hover {
+    color: #5F5F5F;
+    text-decoration: none;
+}

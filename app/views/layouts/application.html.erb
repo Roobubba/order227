@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Order227</title>
+    <title>Order#227</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    
+    <nav class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        <%= link_to image_tag('/assets/images/O227textlogo.png',), "home" %>
+      </div>
+    </nav>
+    
+    <div class="center container">
+      <%= yield %>
+    </div>
   </body>
 </html>
