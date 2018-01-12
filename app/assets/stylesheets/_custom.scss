@@ -1,5 +1,15 @@
 @import "bootstrap";
 
+hr {
+  border-color: #888888;
+}
+
+.gravatar {
+  border-radius: 10px;
+  border-color: #888888;
+}
+
+
 .navbar-default {
 	color: #888888;
 	background-color: #1A1A1A;
@@ -70,6 +80,10 @@
 	color: #FFFFFF;
 	text-decoration: none;
 }
+
+
+
+
 
 .pinktest {
 	background-color: #ff9999;

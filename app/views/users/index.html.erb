@@ -1,0 +1,20 @@
+<%= render 'shared/page_title', title: "All Subscribers" %>
+
+<% @users.each do |user| %>
+  <div class="row">
+    <div class="col-3">
+      <section class="text-center mt-3">
+        <%= gravatar_for user %>
+      </section>
+    </div>
+    <div class="col">
+      <section class="main-text" style="font-size: 1rem">
+        <p><strong>Username: </strong><%= link_to user.username, user_path(user) %></p>
+        <p><strong>Email: </strong><%= user.email %></p>
+        <p><small><strong>Subscribed: </strong><%= time_ago_in_words(user.created_at) %> ago</small></p>
+      </section>
+    </div>
+  </div>
+  <hr/>
+<% end %>
+  

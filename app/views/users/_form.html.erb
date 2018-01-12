@@ -1,0 +1,21 @@
+<%= render 'shared/errors', obj: @user %> 
+  
+  <div class="row">
+    <div class="col-8 col-offset-2">
+      <%= form_for @user do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+      
+      <%= f.submit(@user.new_record? ? 'Subscribe to mailing list' : 'Edit User Profile', class: "btn btn-success") %>
+      <% end %>
+    </div>
+  </div>
