@@ -1,5 +1,22 @@
 @import "bootstrap";
 
+@font-face {
+    font-family: '1952_rheinmetallregular';
+    src: url('1952_rheinmetall-webfont.eot');
+    src: url('1952_rheinmetall-webfont.eot?#iefix') format('embedded-opentype'),
+         url('1952_rheinmetall-webfont.woff2') format('woff2'),
+         url('1952_rheinmetall-webfont.woff') format('woff'),
+         url('1952_rheinmetall-webfont.ttf') format('truetype'),
+         url('1952_rheinmetall-webfont.svg#1952_rheinmetallregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+div, button {
+	font-family: '1952_rheinmetallregular', Arial;
+}
+
+
 hr {
   border-color: #888888;
 }
