@@ -1,15 +1,31 @@
 <%= render 'shared/page_title', title: "Log in" %>
 
-  <div class="row">
-    <div class="well col-6 col-offset-3">
-      <%= form_tag '/login' do %>
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-        
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-        
-        <%= submit_tag 'Log in', class: 'btn btn-success' %>
-      <% end %>
-    </div>
+<div class="row">
+  <div class="col text-center">
+    <%= link_to "No account? Register here to subscribe to the mailing list", register_path, class: "main-text main-text-link" %>
   </div>
+</div>
+<hr/>
+
+<%= form_tag '/login' do %>
+  <div class="row main-text">
+
+    <div class="col-sm-5">
+      <%= label_tag :email %>
+    </div>
+    <div class="col-sm-7">
+      <%= text_field_tag :email %>
+    </div>
+    <div class="col-sm-5">
+      <%= label_tag :password %>
+    </div>
+    <div class="col-sm-7">
+      <%= password_field_tag :password %>
+    </div>      
+    <div class="col-12 text-center mt-4">
+      <%= submit_tag 'Log in', class: "btn btn-default" %>
+    </div>
+
+  </div>
+  
+<% end %>
