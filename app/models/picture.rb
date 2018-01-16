@@ -2,6 +2,14 @@ class Picture < ActiveRecord::Base
 
   mount_uploader :picture, PictureUploader
 
+  before_save :set_alt_text
+  
+  def set_alt_text
+    if self.alt_text.empty?
+      self.alt_text = File.basename(self.picture.path).split(".").first
+    end
+  end
+  
   validates :picture, presence: true
   validate :picture_size
   default_scope -> { order(updated_at: :desc) }

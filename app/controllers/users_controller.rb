@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   
   before_action :set_user, only: [:edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_admin_user, only: [:index]
   
   def index
      @users = User.paginate(page: params[:page], per_page: 25)
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
-  
 
   def new
     @user = User.new
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-          params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
    
     def set_user
@@ -55,18 +55,5 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
     end
-    
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
 end
