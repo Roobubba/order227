@@ -28,9 +28,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @user.update(user_params)
       flash[:success] = "Your profile has been updated successfully"

@@ -1,0 +1,16 @@
+<%= render 'shared/page_title', title: "All Bands" %>
+
+<% @bands.each do |band| %>
+  <div class="row">
+    <div class="col">
+      <section class="main-text" style="font-size: 1rem">
+        <p><strong>Band Name: </strong><%= link_to band.name, band_path(band), class: "main-text main-text-link" %></p>
+        <p><strong>Contact Email: </strong><% if !band.email? %>(NONE PRESENT)<% else %><%= band.email %><% end %></p>
+        <p><strong>Contact Name: </strong><% if !band.contact_name? %>(NONE PRESENT)<% else %><%= band.contact_name %><% end %></p>
+        <p><strong>Band Website: </strong><% if !band.url? %>(NONE PRESENT)<% else %><%= link_to band.url, URI::HTTP.build({:host => band.url}).to_s, { class: "main-text main-text-link", target: "_blank" } %><% end %></p>
+      </section>
+    </div>
+  </div>
+  <hr/>
+<% end %>
+  
