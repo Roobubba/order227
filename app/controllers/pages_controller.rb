@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+  
+  before_action :require_user, only: [:siteadmin]
+  before_action :require_admin_user, only: [:siteadmin]
     
   def home
   
@@ -27,5 +30,10 @@ class PagesController < ApplicationController
   def contact
   end
   
+  def siteadmin
+  
+  end
+  
+
   
 end

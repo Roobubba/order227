@@ -21,17 +21,23 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_admin_user
+    if !logged_in? or !current_user.admin?
+      flash[:danger] = "You must be an admin to perform that action"
+      redirect_back_or_failsafe(root_path)
+    end
+  end
+  
+  
   private 
   
     def redirect_back_or_failsafe(user_loc)
       if request.env["HTTP_REFERER"].present? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
-      redirect_to :back #NB deprecated in next version of Rails so we may need to change this when the redirect_back method is implemented!
-    else
-      redirect_to user_loc
-    end
+        redirect_to :back #NB deprecated in next version of Rails so we may need to change this when the redirect_back method is implemented!
+      else
+        redirect_to user_loc
+      end
       
     end
     
-  
-  
 end

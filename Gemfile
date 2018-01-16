@@ -18,7 +18,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.11'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-aws'
+gem 'fog-aws'
 gem 'mini_magick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

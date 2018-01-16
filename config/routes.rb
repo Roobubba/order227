@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/gallery', to: 'pages#gallery', as: 'gallery'
   get '/shows', to: 'pages#shows', as: 'shows'
   get '/contact', to: 'pages#contact', as: 'contact'
+  get '/siteadmin', to: 'pages#siteadmin', as: 'siteadmin'
 
   #get '/users', to: 'users#index'
   #get '/users/new', to: 'users#new', as: 'sign_up'
@@ -28,6 +29,15 @@ Rails.application.routes.draw do
   post '/login', to: 'logins#create'
   get '/logout', to: 'logins#destroy'
   
+  resources :posts
+  resources :pictures
+  resources :shows
+  resources :bands
+  resources :venues
+  resources :videos
+  resources :releases
+  resources :release_types
+  resources :tracks
   
   
 end

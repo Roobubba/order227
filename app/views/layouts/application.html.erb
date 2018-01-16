@@ -11,6 +11,14 @@
 	<body class="main-background">
     
   <%= render 'layouts/navigation' %>
+  
+  <% if logged_in? and current_user.admin? %>
+    <div class="row">
+      <div class="col mb-5 text-center">
+        <%= link_to "MANAGE CONTENT", siteadmin_path, class: "main-text main-text-header main-text-link" %>
+      </div>
+    </div>
+  <% end %>
     
     <div class="container-fluid main-background">
 			<div class="row">
