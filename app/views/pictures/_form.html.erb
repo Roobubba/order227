@@ -14,9 +14,15 @@
     <div class="col-sm-7">
       <%= f.check_box :in_gallery %>
     </div>
+    <div class="col-sm-5">
+      Picture:
+    </div>
+    <div class="col-sm-7 well">
+      <% if f.object.picture? %><%= image_tag f.object.picture.middle.url %><% else %>(No picture attached)<% end %>
+    </div>
+    
     <span class="col-10 picture">
       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-      <% if f.object.picture? %><%= image_tag f.object.picture.thumb.url %><% end %>
     </span>
     
 

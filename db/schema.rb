@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180117120130) do
+ActiveRecord::Schema.define(version: 20180117225152) do
 
   create_table "band_shows", force: :cascade do |t|
     t.integer "band_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20180117120130) do
     t.boolean "in_gallery", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "show_id"
   end
 
   create_table "posts", force: :cascade do |t|

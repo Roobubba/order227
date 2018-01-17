@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-3">
       <section class="text-center mt-3">
-        <%= link_to image_tag(show.picture.picture, {class: "img img-thumbnail", alt: show.picture.alt_text}), show.url, class: "img img-menu" %>
+        <%= link_to image_tag(show.picture.picture.middle.url, {class: "img-thumbnail", alt_text: show.picture.alt_text}), show_path(show) %>
       </section>
     </div>
     <div class="col-5">
