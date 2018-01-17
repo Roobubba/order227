@@ -1,0 +1,54 @@
+<%= render 'shared/page_title', title: @band.name, link: edit_band_path(@band) %>
+<div class="row mb-3">
+  <div class="col-11 offset-1">
+      <section class="main-text">
+        <p><strong>Band Name: </strong> <%= link_to @band.name, edit_band_path(@band), class: "main-text main-text-link" %> </p>
+        <p><strong>Contact Email: </strong><% if !@band.email? %>(NONE PRESENT)<% else %><%= @band.email %><% end %></p>
+        <p><strong>Contact Name: </strong><% if !@band.contact_name? %>(NONE PRESENT)<% else %><%= @band.contact_name %><% end %></p>
+        <p><strong>Band Website / Social media link: </strong><% if !@band.url? %>(NONE PRESENT)<% else %><%= link_to @band.url, @band.url, { class: "main-text main-text-link", target: "_blank" } %><% end %></p>
+      </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6 text-center my-3">
+    <%= link_to "Back to bands", bands_path, class: "main-text main-text-link" %>
+  </div>
+  <div class="col-6 text-center my-3">
+    <%= link_to "DELETE " + @band.name, @band, method: :delete, class: "main-text main-text-link", data: { confirm: "Are you sure you want to delete the band: " + @band.name + "?" } %>
+  </div>
+</div>
+<hr/>
+
+<div class="row">
+  <div class="col text-center main-text main-text-header mb-2 mt-4">
+      Shows with <%= @band.name %>:
+  </div>
+</div>
+
+
+<%= will_paginate @shows %>
+<hr/>
+
+<% @shows.each do |show| %>
+  <div class="row">
+    <div class="col-11 offset-1 main-text">
+      <p><strong>Venue: </strong><%= link_to display_venue(show.venue), venue_path(show.venue), class: "main-text main-text-link" %></p>
+      <p><strong>Date: </strong><%= link_to show.date.to_s, show_path(show), class: "main-text main-text-link" %></p>
+      <p><strong>Bands: </strong>
+        <% show.bands.each do |band| %>
+          <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> 
+          <% if band != show.bands.last %> / <% end %>
+        <% end %>
+      </p>
+      <p><strong>Event Link: </strong><% if !show.url? %>(NONE PRESENT)<% else %><%= link_to show.url, show.url, class: "main-text main-text-link" %><% end %></p>
+    </div>
+  </div>
+  <% if show != @shows.last %>
+    <hr/>
+  <% end %>
+<% end %>
+
+<%= will_paginate @shows %>
+
+<hr/>

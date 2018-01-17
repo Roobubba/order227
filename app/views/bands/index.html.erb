@@ -1,16 +1,34 @@
 <%= render 'shared/page_title', title: "All Bands" %>
+<div class="row mb-3">
+  <div class="col text-center">
+    <%= link_to "ADD NEW BAND", new_band_path, class: "main-text main-text-header main-text-link" %>
+  </div>
+</div>
+
+<%= will_paginate %>
+<hr/>
 
 <% @bands.each do |band| %>
   <div class="row">
-    <div class="col">
-      <section class="main-text" style="font-size: 1rem">
-        <p><strong>Band Name: </strong><%= link_to band.name, band_path(band), class: "main-text main-text-link" %></p>
+    <div class="col-lg-6">
+      <section class="main-text">
+        <p><strong>Band Name: </strong> <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> </p>
         <p><strong>Contact Email: </strong><% if !band.email? %>(NONE PRESENT)<% else %><%= band.email %><% end %></p>
         <p><strong>Contact Name: </strong><% if !band.contact_name? %>(NONE PRESENT)<% else %><%= band.contact_name %><% end %></p>
-        <p><strong>Band Website: </strong><% if !band.url? %>(NONE PRESENT)<% else %><%= link_to band.url, URI::HTTP.build({:host => band.url}).to_s, { class: "main-text main-text-link", target: "_blank" } %><% end %></p>
+        <p><strong>Band Website / Social media link: </strong><% if !band.url? %>(NONE PRESENT)<% else %><%= link_to band.url, band.url, { class: "main-text main-text-link", target: "_blank" } %><% end %></p>
       </section>
     </div>
+    <div class="col-6 col-lg-3 text-center align-self-center">
+      <%= link_to "EDIT", edit_band_path(band), class: "main-text main-text-header main-text-link" %>
+    </div>
+    <div class="col-6 col-lg-3 text-center align-self-center">
+      <%= link_to "DELETE", band, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the band: " + band.name } %>
+    </div>
   </div>
-  <hr/>
+  <% if band != @bands.last %>
+    <hr/>
+  <% end %>
 <% end %>
-  
+
+<%= will_paginate %>
+<hr/>

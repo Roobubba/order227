@@ -1,0 +1,34 @@
+<%= render 'shared/errors', obj: @picture %> 
+
+<%= form_for(@picture, html: { multipart: true }) do |f| %>
+  <div class="row main-text">
+    <div class="col-sm-5">
+      <%= f.label :alt_text %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.text_field :alt_text %>
+    </div>
+    <div class="col-sm-5">
+      <%= f.label :in_gallery %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.check_box :in_gallery %>
+    </div>
+    <span class="col-10 picture">
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      <% if f.object.picture? %><%= image_tag f.object.picture.thumb.url %><% end %>
+    </span>
+    
+
+    <div class="col-6 text-center mt-4">
+      <%= f.submit(@picture.new_record? ? 'Upload new picture' : 'Edit picture', class: "btn btn-default") %>
+    </div>
+    <div class="col-6 text-center mt-4">
+      <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
+    </div>
+
+  </div>
+  
+<% end %>
+
+<hr/>

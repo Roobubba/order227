@@ -24,7 +24,7 @@ class PagesController < ApplicationController
   def gallery
   end
   
-  def shows
+  def liveshows
   end
   
   def contact

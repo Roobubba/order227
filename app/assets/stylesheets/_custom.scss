@@ -18,17 +18,17 @@ div, button {
 
 
 hr {
-  border-color: #888888;
+  border-color: #777777;
 }
 
 .gravatar {
   border-radius: 10px;
-  border-color: #888888;
+  border-color: #777777;
 }
 
 
 .navbar-default {
-	color: #888888;
+	color: #777777;
 	background-color: #1A1A1A;
 	font-weight: bold;
  }
@@ -40,12 +40,16 @@ hr {
 }
 
 .nav-item {
-	color: #888888;
+	color: #777777;
 	text-align: center;
-	font-size: 1.4rem;
+	font-size: 2rem;
 }
 
-.nav-item.active, .nav-item:hover{
+.nav-link {
+  color: #999999;
+}
+
+.nav-link.active, .nav-link:hover{
 	color: #FFFFFF;
 }
 
@@ -57,16 +61,25 @@ hr {
 .main-background {
 	background-color: #1A1A1A;
 }
+
+
+.main-text {
+	color: #777777;
+	font-size: 1.3rem;
+}
+.main-text-header {
+	color: #777777;
+	font-weight: bold;
+	padding-bottom: 20px;
+	font-size: 2rem;
+}
 .main-text-link {
+  color: #999999;
 	font-weight: bold;
 }
 .main-text-link:hover{
 	color: #fff;
 	text-decoration: none;
-}
-.main-text {
-	color: #888888;
-	font-size: 1.2rem;
 }
 
 .music-container {
@@ -77,20 +90,13 @@ hr {
 	margin-bottom: 1rem;
 }
 
-.main-text-header {
-	color: #888888;
-	font-weight: bold;
-	padding-bottom: 20px;
-	font-size: 1.4rem;
-}
-
 .footer-text {
-	color: #888888;
+	color: #777777;
 	font-weight: normal;
 }
 
 .footer-text-link {
-	color: #CCCCCC;
+	color: #999999;
 }
 
 .footer-text-link:hover {
@@ -100,6 +106,36 @@ hr {
 
 .img-menu {
   height: 40px;
+}
+
+.pagination {
+  font-size: 1.3rem;
+  
+}
+.pagination > * {
+  margin-right: 1rem;
+  padding: 0.6rem, 0.6rem;
+
+}
+
+.pagination a {
+  color: #999999;
+}
+
+.pagination a:hover {
+  color: #FFFFFF;
+}
+
+.pagination .current{
+  color: #777777;
+}
+.pagination .disabled {
+  color: #777777;
+}
+
+.form-button, .form-button:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
 

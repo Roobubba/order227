@@ -9,7 +9,7 @@
   </head>
 
 	<body class="main-background">
-    
+  <%= render 'layouts/messages' %>  
   <%= render 'layouts/navigation' %>
   
   <% if logged_in? and current_user.admin? %>

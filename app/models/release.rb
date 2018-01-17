@@ -4,5 +4,6 @@ class Release < ActiveRecord::Base
   validates :url, presence: true, length: { minimum: 1, maximum: 100 }
   validates :release_date, presence: true
   validates :releasetype_id, presence: true
-  validates :comments, length: { maximum: 300 }
+  validates :comments, length: { maximum: 2000 }
+  
 end

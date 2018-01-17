@@ -1,0 +1,20 @@
+<%= render 'shared/page_title', title: "Subscriber profile: " + @user.username + " - Click to edit", link: edit_user_path(@user) %>
+
+<div class="row mb-3">
+  <div class="col-11 offset-1">
+      <section class="main-text">
+        <p><strong>Username: </strong> <%= link_to @user.username, edit_user_path(@user), class: "main-text main-text-link" %> </p>
+        <p><strong>Registered Email: </strong><%= @user.email %></p>
+      </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6 text-center my-3">
+    <%= link_to "HOME", root_path, class: "main-text main-text-link" %>
+  </div>
+  <div class="col-6 text-center my-3">
+    <%= link_to "Unsubscribe", @user, method: :delete, class: "main-text main-text-link", data: { confirm: "This will delete your account and unsubscribe you from our mailing list.\nAre you sure you want to delete your profile, " + @user.username + "?" } %>
+  </div>
+</div>
+<hr/>

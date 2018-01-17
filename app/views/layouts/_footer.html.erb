@@ -7,7 +7,7 @@
   	<% if !logged_in? %>
       <%= link_to "Subscribe to mailing list", register_path, class: "footer-text-link" %> / <%= link_to "Login", login_path, class: "footer-text-link" %>
     <% else %>
-    	Subscribed to mailing list as: <strong><%= current_user.username %></strong> - <%= link_to "Edit Subscription", edit_user_path(current_user), class: "footer-text-link" %> - <%= link_to "Log Out", logout_path, class: "footer-text-link" %>
+    	Subscribed to mailing list as: <strong><%= current_user.username %></strong> - <%= link_to "Edit Subscription", user_path(current_user), class: "footer-text-link" %> - <%= link_to "Log Out", logout_path, class: "footer-text-link" %>
     <% end %>
   </div>
 </div>	

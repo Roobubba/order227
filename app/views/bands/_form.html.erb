@@ -1,38 +1,38 @@
-<%= render 'shared/errors', obj: @user %> 
+<%= render 'shared/errors', obj: @band %> 
 
-
-<%= form_for @user do |f| %>
+<%= form_for @band do |f| %>
   <div class="row main-text">
     <div class="col-sm-5">
-      <%= f.label :username %>
+      <%= f.label :name %>
     </div>
     <div class="col-sm-7">
-      <%= f.text_field :username %>
+      <%= f.text_field :name %>
     </div>
     <div class="col-sm-5">
-      <%= f.label :email %>
+      <%= f.label :email %> (optional)
     </div>
     <div class="col-sm-7">
       <%= f.email_field :email %>
     </div>
     <div class="col-sm-5">
-      <%= f.label :password %>
+      <%= f.label :contact_name %> (optional)
     </div>
     <div class="col-sm-7">
-      <%= f.password_field :password %>
-    </div>      
+      <%= f.text_field :contact_name %>
+    </div>
     <div class="col-sm-5">
-      <%= f.label :password_confirmation %>
+      <%= f.label :url %> (optional)
     </div>
     <div class="col-sm-7">
-      <%= f.password_field :password_confirmation %>
-    </div>
+      <%= f.url_field :url %>
+    </div>   
     <div class="col-6 text-center mt-4">
-      <%= f.submit(@user.new_record? ? 'Subscribe to mailing list' : 'Edit Profile', class: "btn btn-default") %>
+      <%= f.submit(@band.new_record? ? 'Create new Band' : 'Edit Band Profile', class: "btn btn-default") %>
     </div>
     <div class="col-6 text-center mt-4">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
+
   </div>
   
 <% end %>

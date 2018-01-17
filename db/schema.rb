@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116155648) do
+ActiveRecord::Schema.define(version: 20180117120130) do
 
   create_table "band_shows", force: :cascade do |t|
     t.integer "band_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180116155648) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "post_text"
+    t.text "post_text"
     t.string "title"
     t.integer "picture_id"
     t.datetime "created_at", null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180116155648) do
   create_table "releases", force: :cascade do |t|
     t.string "title"
     t.string "url"
-    t.string "comments"
+    t.text "comments"
     t.date "release_date"
     t.integer "releasetype_id"
     t.integer "picture_id"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 20180116155648) do
   create_table "shows", force: :cascade do |t|
     t.date "date"
     t.integer "venue_id"
-    t.integer "headliners"
     t.integer "picture_id"
     t.string "url"
   end
@@ -66,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180116155648) do
     t.string "title"
     t.string "url"
     t.string "comments"
-    t.string "lyrics"
+    t.text "lyrics"
     t.date "recorded_date"
     t.integer "release_id"
   end

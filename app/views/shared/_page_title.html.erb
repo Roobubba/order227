@@ -1,4 +1,8 @@
 <p>
-  <h1 class="main-text main-text-header text-center" style="font-size: 2rem"><%= title %></h1>
+  <% if defined?(link) != nil %>
+    <h1 class="main-text main-text-header text-center"><%= link_to title, link, class: "main-text main-text-header main-text-link text-center" %></h1>  
+  <% else %>
+    <h1 class="main-text main-text-header text-center"><%= title %></h1>
+  <% end %>
   <hr/>
 </p>

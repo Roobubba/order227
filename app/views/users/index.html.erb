@@ -1,5 +1,13 @@
 <%= render 'shared/page_title', title: "All Subscribers" %>
 
+<div class="row mb-3">
+  <div class="col text-center">
+    <%= link_to "ADD NEW Subscriber", register_path, class: "main-text main-text-header main-text-link" %>
+  </div>
+</div>
+
+<%= will_paginate %>
+<hr/>
 <% @users.each do |user| %>
   <div class="row">
     <div class="col-3">
@@ -7,14 +15,25 @@
         <%= gravatar_for user %>
       </section>
     </div>
-    <div class="col">
-      <section class="main-text" style="font-size: 1rem">
-        <p><strong>Username: </strong><%= link_to user.username, user_path(user) %></p>
+    <div class="col-5">
+      <section class="main-text">
+        <p><strong>Username: </strong><%= link_to user.username, user_path(user), class: "main-text main-text-link" %></p>
         <p><strong>Email: </strong><%= user.email %></p>
         <p><small><strong>Subscribed: </strong><%= time_ago_in_words(user.created_at) %> ago</small></p>
       </section>
     </div>
+    <div class="col-6 col-lg-2 text-center align-self-center">
+      <%= link_to "EDIT", edit_user_path(user), class: "main-text main-text-header main-text-link" %>
+    </div>
+    <div class="col-6 col-lg-2 text-center align-self-center">
+      <%= link_to "DELETE", user, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the user: " + user.username } %>
+    </div>
   </div>
-  <hr/>
+  <% if user != @users.last %>
+    <hr/>
+  <% end %>
 <% end %>
+
+<%= will_paginate %>
+<hr/>
   

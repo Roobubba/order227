@@ -2,14 +2,15 @@ class BandsController < ApplicationController
   
   before_action :require_user
   before_action :require_admin_user
-  before_action :set_band, only: [:edit, :update, :show, :destroy]
+  before_action :set_band, only: [:edit, :update, :destroy, :show]
+  before_action :check_for_cancel, only: [:update, :create]
   
   def index
-    @bands = Band.paginate(page: params[:page], per_page: 25)
+    @bands = Band.paginate(page: params[:page], per_page: 20)
   end
-
+  
   def show
-
+    @shows = @band.shows.paginate(page: params[:page], per_page: 20)
   end
 
   def edit
@@ -46,13 +47,21 @@ class BandsController < ApplicationController
     redirect_to bands_path
   end
   
+
+  
   private
     def band_params
-      params.require(:user).permit(:name, :email, :contact_name, :url, show_ids: [])
+      params.require(:band).permit(:name, :email, :contact_name, :url)
     end
    
     def set_band
       @band = Band.find(params[:id])
     end
-  
+    
+    def check_for_cancel
+      if(params.key?("cancel"))
+        redirect_back(fallback_location: bands_path)
+      end
+    end
+    
 end

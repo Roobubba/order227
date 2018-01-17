@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/music', to: 'pages#music', as: 'music'  
   get '/videos', to: 'pages#videos', as: 'videos'
   get '/gallery', to: 'pages#gallery', as: 'gallery'
-  get '/shows', to: 'pages#shows', as: 'shows'
+  get '/liveshows', to: 'pages#liveshows', as: 'liveshows'
   get '/contact', to: 'pages#contact', as: 'contact'
   get '/siteadmin', to: 'pages#siteadmin', as: 'siteadmin'
 
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   #get '/users/:id', to: 'users#show', as: 'user'
   #delete '/users/:id', to: 'users#destroy'
   
-  resources :users, except: [:new, :destroy, :show]
+  resources :users, except: [:new]
 
   get '/register', to: 'users#new'
   
