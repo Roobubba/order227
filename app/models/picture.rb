@@ -2,7 +2,7 @@ class Picture < ActiveRecord::Base
 
   belongs_to :show, optional: true, dependent: :destroy
   mount_uploader :picture, PictureUploader
-
+  
   before_save :set_alt_text
   
   def set_alt_text
