@@ -1,0 +1,33 @@
+<%= render 'shared/page_title', title: "All Venues" %>
+<div class="row mb-3">
+  <div class="col text-center">
+    <%= link_to "ADD NEW VENUE", new_venue_path, class: "main-text main-text-header main-text-link" %>
+  </div>
+</div>
+
+<%= will_paginate %>
+<hr/>
+
+<% @venues.each do |venue| %>
+  <div class="row">
+    <div class="col-lg-6">
+      <section class="main-text">
+        <p><strong>Venue: </strong><%= display_venue(venue) %></p>
+        <p><strong>Contact Name: </strong><% if !venue.contact_name? %>(NONE PRESENT)<% else %><%= venue.contact_name %><% end %></p>
+        <p><strong>Contact Details: </strong><% if !venue.contact_detail? %>(NONE PRESENT)<% else %><%= venue.contact_detail %><% end %></p>
+      </section>
+    </div>
+    <div class="col-6 col-lg-3 text-center align-self-center">
+      <%= link_to "EDIT", edit_venue_path(venue), class: "main-text main-text-header main-text-link" %>
+    </div>
+    <div class="col-6 col-lg-3 text-center align-self-center">
+      <%= link_to "DELETE", venue, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the venue: " + display_venue(venue) } %>
+    </div>
+  </div>
+  <% if venue != @venues.last %>
+    <hr/>
+  <% end %>
+<% end %>
+
+<%= will_paginate %>
+<hr/>

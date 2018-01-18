@@ -1,0 +1,35 @@
+<%= render 'shared/page_title', title: "All Tracks" %>
+<div class="row mb-3">
+  <div class="col text-center">
+    <%= link_to "ADD NEW TRACK", new_track_path, class: "main-text main-text-header main-text-link" %>
+  </div>
+</div>
+
+<%= will_paginate %>
+<hr/>
+
+<% @tracks.each do |track| %>
+  <div class="row">
+    <div class="col-lg-6">
+      <section class="main-text">
+        <p><strong>Title: </strong><%= display_venue(venue) %></p>
+        <p><strong>Link: </strong><%= venue.contact_name %></p>
+        <p><strong>Recorded on: </strong><%= track.recorded_date.to_formatted_s(:rfc822) %></p>
+        <p><strong>Released as: </strong><%= track.release_id.contact_detail %></p>
+        <p><strong>Comments: </strong><% if !venue.contact_detail? %>(NONE PRESENT)<% else %><%= venue.contact_detail %><% end %></p>
+      </section>
+    </div>
+    <div class="col-6 col-lg-3 text-center align-self-center">
+      <%= link_to "EDIT", edit_venue_path(venue), class: "main-text main-text-header main-text-link" %>
+    </div>
+    <div class="col-6 col-lg-3 text-center align-self-center">
+      <%= link_to "DELETE", venue, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the venue: " + display_venue(venue) } %>
+    </div>
+  </div>
+  <% if venue != @venues.last %>
+    <hr/>
+  <% end %>
+<% end %>
+
+<%= will_paginate %>
+<hr/>

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :pictures
   resources :shows
   resources :bands
-  resources :venues
+  resources :venues, except: [:show]
   resources :videos
   resources :releases
   resources :release_types

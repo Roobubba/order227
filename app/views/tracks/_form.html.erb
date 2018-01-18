@@ -1,0 +1,52 @@
+<%= render 'shared/errors', obj: @track %> 
+
+<%= form_for @track do |f| %>
+  <div class="row main-text">
+    <div class="col-sm-5">
+      <%= f.label :title %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.text_field :title %>
+    </div>
+    <div class="col-sm-5">
+      <%= f.label :url, 'Link' %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.url_field :url %>
+    </div>
+    <div class="col-sm-5">
+      <%= f.label :comments %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.text_area :comments %>
+    </div> 
+    <div class="col-sm-5">
+      <%= f.label :lyrics %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.text_area :lyrics %>
+    </div> 
+    <div class="col-sm-5">
+      <%= f.label :recorded_date %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.date_field :recorded_date %>
+    </div>
+    <div class="col-sm-5">
+      <%= f.label :release_id %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.select                                       :release_id %>
+    </div>
+    <div class="col-6 text-center mt-4">
+      <%= f.submit(@venue.new_record? ? 'Create new Venue' : 'Edit Venue', class: "btn btn-default") %>
+    </div>
+    <div class="col-6 text-center mt-4">
+      <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
+    </div>
+
+  </div>
+  
+<% end %>
+
+<hr/>
