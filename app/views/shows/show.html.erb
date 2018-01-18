@@ -1,9 +1,9 @@
-<%= render 'shared/page_title', title: "Show: " + display_venue(@show.venue) + " on " + @show.date.to_s, link: edit_show_path(@show) %>
+<%= render 'shared/page_title', title: "Show: " + display_venue(@show.venue) + " on " + format_date(@show.date), link: edit_show_path(@show) %>
 <div class="row mb-3">
   <div class="col-11 offset-1">
     <section class="main-text">
       <p><strong>Venue: </strong><%= link_to display_venue(@show.venue), venue_path(@show.venue), class: "main-text main-text-link" %></p>
-      <p><strong>Date: </strong><%= @show.date.to_s %></p>
+      <p><strong>Date: </strong><%= format_date(@show.date) %></p>
       <p><strong>Bands: </strong>
         <% @show.bands.each do |band| %>
           <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> 

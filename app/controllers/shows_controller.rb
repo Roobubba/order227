@@ -1,20 +1,18 @@
 class ShowsController < ApplicationController
 
-  before_action do 
-    require_user(liveshows_path)
-  end
-  before_action do 
-    require_admin_user(liveshows_path)
-  end
-  
   before_action :set_show, only: [:edit, :update, :destroy, :show]
+
+  before_action only: [:edit, :update, :destroy, :new, :create] do 
+    require_admin_user(shows_path)
+  end
   
   def show
     @bands = @show.bands
   end
 
   def index
-    @shows = Show.paginate(page: params[:page], per_page: 20)
+    @futureshows = Show.where('date >= ?', Date.today).order(:date).paginate(page: params[:page], per_page: 5)
+    @pastshows = Show.where('date < ?', Date.today).order(date: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def edit
@@ -23,11 +21,11 @@ class ShowsController < ApplicationController
   
   def new
     @show = Show.new
+    @show.build_venue
   end
   
   def create
     @show = Show.new(show_params)
-
     if @show.save
       flash[:success] = "Show was created successfully"
       redirect_to shows_path
@@ -53,7 +51,7 @@ class ShowsController < ApplicationController
 
   private
     def show_params
-      params.require(:show).permit(:date, :venue_id, :picture_id, :url, band_ids: [])
+      params.require(:show).permit(:date, :venue_id, :picture_id, :url, band_ids: [], venues_attributes: [:id, :name, :city, :country ])
     end
    
     def set_show

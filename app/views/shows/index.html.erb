@@ -1,45 +1,126 @@
-<%= render 'shared/page_title', title: "All Shows" %>
+<% if logged_in? and current_user.admin? %>
 <div class="row mb-3">
   <div class="col text-center">
     <%= link_to "ADD NEW SHOW", new_show_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
+<% end %>
 
-<%= will_paginate %>
-<hr/>
+<%= render 'shared/page_title', title: "Upcoming Shows" %>
 
-<% @shows.each do |show| %>
+<%= will_paginate @futureshows%>
+<% if @futureshows.total_pages > 1 %>
+  <hr/>
+<% end %>
+
+<% @futureshows.each do |show| %>
   <div class="row">
     <div class="col-3">
       <section class="text-center mt-3">
         <%= link_to image_tag(show.picture.picture.middle.url, {class: "img-thumbnail", alt_text: show.picture.alt_text}), show_path(show) %>
       </section>
     </div>
-    <div class="col-5">
+    <% if logged_in? and current_user.admin? %>
+      <div class="col-8 col-lg-5">
+    <% else %>
+      <div class="col-8">
+    <% end %>
       <section class="main-text">
-        <p><strong>Venue: </strong><%= link_to display_venue(show.venue), venue_path(show.venue), class: "main-text main-text-link" %></p>
-        <p><strong>Date: </strong><%= link_to show.date.to_s, show_path(show), class: "main-text main-text-link" %></p>
         <p><strong>Bands: </strong>
           <% show.bands.each do |band| %>
-            <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> 
+            <% if logged_in? and current_user.admin? %>
+              <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> 
+            <% else %>
+              <% if !band.url? %><%= band.name %><% else %><%= link_to band.name, band.url, class: "main-text-link" %><% end %>
+            <% end %>
             <% if band != show.bands.last %> / <% end %>
           <% end %>
+        </p>
+        <p><strong>Date: </strong><%= link_to format_date(show.date), show_path(show), class: "main-text main-text-link" %></p>
+        <p><strong>Venue: </strong>
+        <% if logged_in? and current_user.admin? %>
+          <%= link_to display_venue(show.venue), venue_path(show.venue), class: "main-text main-text-link" %>
+        <% else %>
+          <%= display_venue(show.venue) %>
+        <% end %>
         </p>
         <p><strong>Event Link: </strong><% if !show.url? %>(NONE PRESENT)<% else %><%= link_to show.url, show.url, class: "main-text main-text-link" %><% end %></p>
       </section>
     </div>
-    <div class="col-6 col-lg-2 text-center align-self-center">
-      <%= link_to "EDIT", edit_show_path(show), class: "main-text main-text-header main-text-link" %>
-    </div>
-    <div class="col-6 col-lg-2 text-center align-self-center">
-      <%= link_to "DELETE", show, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete this show?" } %>
-    </div>
+    <% if logged_in? and current_user.admin? %>
+      <div class="col-6 col-lg-2 text-center align-self-center">
+        <%= link_to "EDIT", edit_show_path(show), class: "main-text main-text-header main-text-link" %>
+      </div>
+      <div class="col-6 col-lg-2 text-center align-self-center">
+        <%= link_to "DELETE", show, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete this show?" } %>
+      </div>
+    <% end %>
   </div>
-  <% if show != @shows.last %>
+  <% if show != @futureshows.last %>
     <hr/>
   <% end %>
 <% end %>
 
-<%= will_paginate %>
+<%= will_paginate @futureshows%>
+
+<hr/>
+
+<%= render 'shared/page_title', title: "Past Shows" %>
+
+<%= will_paginate @pastshows%>
+<% if @pastshows.total_pages > 1 %>
+  <hr/>
+<% end %>
+
+
+<% @pastshows.each do |show| %>
+  <div class="row">
+    <div class="col-3">
+      <section class="text-center mt-3">
+        <%= link_to image_tag(show.picture.picture.middle.url, {class: "img-thumbnail", alt_text: show.picture.alt_text}), show_path(show) %>
+      </section>
+    </div>
+    <% if logged_in? and current_user.admin? %>
+      <div class="col-8 col-lg-5">
+    <% else %>
+      <div class="col-8">
+    <% end %>
+      <section class="main-text">
+        <p><strong>Bands: </strong>
+          <% show.bands.each do |band| %>
+            <% if logged_in? and current_user.admin? %>
+              <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> 
+            <% else %>
+              <% if !band.url? %><%= band.name %><% else %><%= link_to band.name, band.url, class: "main-text-link" %><% end %>
+            <% end %>
+            <% if band != show.bands.last %> / <% end %>
+          <% end %>
+        </p>
+        <p><strong>Date: </strong><%= link_to format_date(show.date), show_path(show), class: "main-text main-text-link" %></p>
+        <p><strong>Venue: </strong>
+        <% if logged_in? and current_user.admin? %>
+          <%= link_to display_venue(show.venue), venue_path(show.venue), class: "main-text main-text-link" %>
+        <% else %>
+          <%= display_venue(show.venue) %>
+        <% end %>
+        </p>
+        <p><strong>Event Link: </strong><% if !show.url? %>(NONE PRESENT)<% else %><%= link_to show.url, show.url, class: "main-text main-text-link" %><% end %></p>
+      </section>
+    </div>
+    <% if logged_in? and current_user.admin? %>
+      <div class="col-6 col-lg-2 text-center align-self-center">
+        <%= link_to "EDIT", edit_show_path(show), class: "main-text main-text-header main-text-link" %>
+      </div>
+      <div class="col-6 col-lg-2 text-center align-self-center">
+        <%= link_to "DELETE", show, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete this show?" } %>
+      </div>
+    <% end %>
+  </div>
+  <% if show != @pastshows.last %>
+    <hr/>
+  <% end %>
+<% end %>
+
+<%= will_paginate @pastshows%>
 
 <hr/>

@@ -3,19 +3,19 @@
 <%= form_for(@picture, html: { multipart: true }) do |f| %>
   <div class="row main-text">
     <div class="col-sm-5">
-      <%= f.label :alt_text %>
+      <%= f.label :alt_text, 'Description (for accessibility)' %>
     </div>
     <div class="col-sm-7">
       <%= f.text_field :alt_text %>
     </div>
     <div class="col-sm-5">
-      <%= f.label :in_gallery %>
+      <%= f.label :in_gallery, 'Use in Gallery?' %>
     </div>
     <div class="col-sm-7">
       <%= f.check_box :in_gallery %>
     </div>
     <div class="col-sm-5">
-      Picture:
+      <%= f.label :picture %>
     </div>
     <div class="col-sm-7 well">
       <% if f.object.picture? %><%= image_tag f.object.picture.middle.url %><% else %>(No picture attached)<% end %>
@@ -38,3 +38,5 @@
 <% end %>
 
 <hr/>
+
+<%= render 'shared/picturejavascript' %>

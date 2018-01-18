@@ -1,0 +1,73 @@
+<%= render 'shared/errors', obj: @show %> 
+
+<%= form_for @show do |f| %>
+  <div class="row main-text">
+    <div class="col-sm-5">
+      <%= f.label :date %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.date_field :date %>
+    </div>
+    <div class="col-sm-5">
+      <%= f.label :url, 'Event Link' %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.url_field :url %>
+    </div>  
+    
+    <div class="col-sm-5">
+      <%= f.label :venue_id, 'Venue' %>
+    </div> 
+
+    <div class="col-sm-7">
+      <%= f.select :venue_id, options_for_select(Venue.all.order(:name).map{ |s| [display_venue(s), s.id]}), {include_blank: "Select Venue"}, {class: "dropdown-options", id: "venue-dropdown" } %>
+    </div>
+    
+    <div class="col-10 offset-1">     
+      <div class="#venues collapse highlight-background" id="collapse-form">
+        <%= f.fields_for :venues do |venue| %>
+          <%= render 'venue_fields', f: venue %>
+        <% end %>
+      </div>
+    </div>
+    
+    
+    <div class="col-sm-5">
+      <%= f.label :picture_id, 'Picture' %>
+    </div>
+    <div class="col-sm-7">
+      <%= f.text_field :picture_id %>DO NOT USE! TESTING!
+    </div>
+
+    <div class="col-6 text-center mt-4">
+      <%= f.submit(@show.new_record? ? 'Create new Show' : 'Edit Show', class: "btn btn-default") %>
+    </div>
+    <div class="col-6 text-center mt-4">
+      <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
+    </div>
+
+  </div>
+  
+<% end %>
+
+<hr/>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.collapse').collapse();
+});
+
+$('#venue-dropdown').change(function(){
+  opt = $(this).val();
+  if (opt != ""){
+    $('#collapse-form').collapse('hide');
+  }
+  else {
+    $('#collapse-form').collapse('show');
+  }
+});
+
+
+
+</script
