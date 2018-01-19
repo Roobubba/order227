@@ -2,40 +2,40 @@
 
 <%= form_for @venue do |f| %>
   <div class="row main-text">
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :name %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :name %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :city %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :city %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :city, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :country %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :country %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :country, class: "form-control" %>
     </div> 
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :contact_name %> (Optional)
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :contact_name %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :contact_name, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :contact_detail %> (Optional)
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :contact_detail %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :contact_detail, class: "form-control" %>
     </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@venue.new_record? ? 'Create new Venue' : 'Edit Venue', class: "btn btn-default") %>
     </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
 

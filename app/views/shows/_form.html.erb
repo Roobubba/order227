@@ -5,25 +5,25 @@
     <div class="col-sm-5">
       <%= f.label :date %>
     </div>
-    <div class="col-sm-7">
-      <%= f.date_field :date %>
+    <div class="col-sm-7 form-group">
+      <%= f.date_field :date, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :url, 'Event Link' %>
     </div>
-    <div class="col-sm-7">
-      <%= f.url_field :url %>
+    <div class="col-sm-7 form-group">
+      <%= f.url_field :url, class: "form-control" %>
     </div>  
     
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :venue_id, 'Venue' %>
     </div> 
 
-    <div class="col-sm-7">
-      <%= f.select :venue_id, options_for_select(Venue.all.order(:name).map{ |s| [display_venue(s), s.id]}), {include_blank: "Select Venue"}, {class: "dropdown-options", id: "venue-dropdown" } %>
+    <div class="col-sm-7 form-group">
+      <%= f.select :venue_id, options_for_select(Venue.all.order(:name).map{ |s| [display_venue(s), s.id]}), {include_blank: "New Venue (or select existing)"}, {class: "dropdown-options form-control", id: "venue-dropdown" } %>
     </div>
     
-    <div class="col-10 offset-1">     
+    <div class="col-sm-10 offset-sm-1 form-group">     
       <div class="#venues collapse highlight-background" id="collapse-form">
         <%= f.fields_for :venues do |venue| %>
           <%= render 'venue_fields', f: venue %>
@@ -32,17 +32,17 @@
     </div>
     
     
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :picture_id, 'Picture' %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :picture_id %>DO NOT USE! TESTING!
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :picture_id, class: "form-control" %>DO NOT USE! TESTING!
     </div>
 
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@show.new_record? ? 'Create new Show' : 'Edit Show', class: "btn btn-default") %>
     </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
 
@@ -70,4 +70,4 @@ $('#venue-dropdown').change(function(){
 
 
 
-</script
+</script>

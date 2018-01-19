@@ -1,24 +1,25 @@
-<div class="nested-fields pt-2 mb-4 pb-4">
-  <p>Add new venue to database</p>
+<div class="row nested-fields px-3">
+  <div class="col-12">
+    <p>Add new venue to database</p>
+  </div>
   <hr/>
-  <div class="col-sm-5">
+  <div class="col-sm-5 form-group">
     <%= f.label :name, "Venue Name" %>
   </div>
-  <div class="col-sm-7">
-    <%= f.text_field :name %>
+  <div class="col-sm-7 form-group">
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
     <%= f.label :city %>
   </div>
-  <div class="col-sm-7">
-    <%= f.text_field :city %>
+  <div class="col-sm-7 form-group">
+    <%= f.text_field :city, class: "form-control" %>
   </div>  
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
     <%= f.label :country %>
   </div>
-  <div class="col-sm-7">
-    <%= f.text_field :country %>
+  <div class="col-sm-7 form-group">
+    <%= f.text_field :country, class: "form-control" %>
   </div>  
   
 </div>
-<hr/>

@@ -1,0 +1,46 @@
+<%= render 'shared/errors', obj: @post %> 
+
+<%= form_for @post do |f| %>
+  <div class="row main-text">
+    <div class="col-sm-5">
+      <%= f.label :title %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="col-sm-5">
+      <%= f.label :post_text %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.text_area :post_text, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-5 form-group">
+      <%= f.label :picture_id %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.select :picture_id, options_for_select(Picture.all.order(updated_at: :desc).map{ |s| [s.alt_text, s.id, {'data-img-src'=>s.picture.middle.url}]}), {include_blank: "Upload New Or Select:"}, {class: "image-picker show-html form-control"} %>
+    </div>
+                                      MAKE THIS INTO A MODAL AND FIX THE SELECTION AND HIGHLIGHTING!
+
+    <div class="col-sm-5 form-group">
+      <%= f.label :picture_url, 'URL for picture' %> (Optional)
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.url_field :picture_url, class: "form-control" %>
+    </div>
+    <div class="col-6 text-center mt-4 form-group">
+      <%= f.submit(@post.new_record? ? 'Create new Post' : 'Edit Post', class: "btn btn-default") %>
+    </div>
+    <div class="col-6 text-center mt-4 form-group">
+      <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
+    </div>
+  </div>
+<% end %>
+<hr/>
+
+<script type="text/javascript">
+ $(function() {
+  $("select").imagepicker();
+ });
+</script>

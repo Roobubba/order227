@@ -1,12 +1,15 @@
-<%= render 'shared/page_title', title: "All Venues" %>
 <div class="row mb-3">
   <div class="col text-center">
     <%= link_to "ADD NEW VENUE", new_venue_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
 
+<%= render 'shared/page_title', title: "All Venues" %>
+
 <%= will_paginate %>
-<hr/>
+<% if @venues.total_pages > 1 %>
+  <hr/>
+<% end %>
 
 <% @venues.each do |venue| %>
   <div class="row">

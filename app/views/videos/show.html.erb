@@ -1,0 +1,22 @@
+<%= render 'shared/page_title', title: video_header(@video) %>
+<div class="row mb-3">
+  <div class="col-12 embed-responsive embed-responsive-16by9">
+    <%= youtube_link(@video.url) %>
+  </div>
+</div>
+
+<div class="row">
+  <% if logged_in? and current_user.admin? %>
+    <div class="col-6 text-center my-3">
+      <%= link_to "Back to videos", videos_path, class: "main-text main-text-link" %>
+    </div>
+    <div class="col-6 text-center my-3">
+      <%= link_to "DELETE THIS VIDEO", @video, method: :delete, class: "main-text main-text-link", data: { confirm: "Are you sure you want to delete the video: " +  @video.title + "?" } %>
+    </div>
+  <% else %>
+    <div class="col-12 text-center my-3">
+      <%= link_to "Back to Videos", videos_path, class: "main-text main-text-link" %>
+    </div>
+  <% end %>
+</div>
+<hr/>

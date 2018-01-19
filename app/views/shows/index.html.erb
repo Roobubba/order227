@@ -12,7 +12,11 @@
 <% if @futureshows.total_pages > 1 %>
   <hr/>
 <% end %>
-
+<% if @futureshows.count < 1 %>
+  <div class="col text-center">
+    <%= link_to "No upcoming shows, contact us to hear Order#227 near you!", contact_path, {class: "main-text main-text-link"} %>
+  </div>
+<% end %>
 <% @futureshows.each do |show| %>
   <div class="row">
     <div class="col-3">

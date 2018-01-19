@@ -2,46 +2,46 @@
 
 <%= form_for @track do |f| %>
   <div class="row main-text">
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :title %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :title %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :title, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
-      <%= f.label :url, 'Link' %>
+    <div class="col-sm-5 form-group">
+      <%= f.label :url, "Bandcamp Link" %>
     </div>
-    <div class="col-sm-7">
-      <%= f.url_field :url %>
+    <div class="col-sm-7 form-group">
+      <%= f.url_field :url, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :comments %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_area :comments %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_area :comments, class: "form-control" %>
     </div> 
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :lyrics %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_area :lyrics %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_area :lyrics, class: "form-control" %>
     </div> 
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :recorded_date %>
     </div>
-    <div class="col-sm-7">
-      <%= f.date_field :recorded_date %>
+    <div class="col-sm-7 form-group">
+      <%= f.date_field :recorded_date, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :release_id %>
     </div>
-    <div class="col-sm-7">
-      <%= f.select                                       :release_id %>
+    <div class="col-sm-7 form-group">
+      <%= f.select :release_id, options_for_select(Release.all.order(:title).map{ |s| [s.title, s.id]}), {include_blank: "Select Release"}, { class: "form-control" } %>
     </div>
-    <div class="col-6 text-center mt-4">
-      <%= f.submit(@venue.new_record? ? 'Create new Venue' : 'Edit Venue', class: "btn btn-default") %>
+    <div class="col-6 text-center mt-4 form-group">
+      <%= f.submit(@track.new_record? ? 'Create new Track' : 'Edit Track', class: "btn btn-default") %>
     </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
 

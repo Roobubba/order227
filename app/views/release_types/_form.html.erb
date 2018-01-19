@@ -1,41 +1,17 @@
-<%= render 'shared/errors', obj: @venue %> 
+<%= render 'shared/errors', obj: @release_type %> 
 
-<%= form_for @venue do |f| %>
-  <div class="row main-text">
+<%= form_for @release_type do |f| %>
+  <div class="row main-text form-group">
     <div class="col-sm-5">
       <%= f.label :name %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :name %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
-      <%= f.label :city %>
+    <div class="col-6 text-center mt-4 form-group">
+      <%= f.submit(@release_type.new_record? ? 'Create new Release Type' : 'Edit Release Type', class: "btn btn-default") %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :city %>
-    </div>
-    <div class="col-sm-5">
-      <%= f.label :country %>
-    </div>
-    <div class="col-sm-7">
-      <%= f.text_field :country %>
-    </div> 
-    <div class="col-sm-5">
-      <%= f.label :contact_name %> (Optional)
-    </div>
-    <div class="col-sm-7">
-      <%= f.text_field :contact_name %>
-    </div>
-    <div class="col-sm-5">
-      <%= f.label :contact_detail %> (Optional)
-    </div>
-    <div class="col-sm-7">
-      <%= f.text_field :contact_detail %>
-    </div>
-    <div class="col-6 text-center mt-4">
-      <%= f.submit(@venue.new_record? ? 'Create new Venue' : 'Edit Venue', class: "btn btn-default") %>
-    </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
 

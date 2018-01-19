@@ -1,35 +1,35 @@
 <%= render 'shared/errors', obj: @picture %> 
 
 <%= form_for(@picture, html: { multipart: true }) do |f| %>
-  <div class="row main-text">
+  <div class="row main-text form-group">
     <div class="col-sm-5">
       <%= f.label :alt_text, 'Description (for accessibility)' %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :alt_text %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :alt_text, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :in_gallery, 'Use in Gallery?' %>
     </div>
-    <div class="col-sm-7">
-      <%= f.check_box :in_gallery %>
+    <div class="col-sm-7 form-group">
+      <%= f.check_box :in_gallery, class: "big-checkbox form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :picture %>
     </div>
-    <div class="col-sm-7 well">
-      <% if f.object.picture? %><%= image_tag f.object.picture.middle.url %><% else %>(No picture attached)<% end %>
+    <div class="col-sm-7 form-group">
+      <% if f.object.picture? %><%= image_tag f.object.picture.middle.url, class: "img-thumbnail" %><% else %>(No picture attached)<% end %>
     </div>
     
-    <span class="col-10 picture">
-      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+    <span class="col-10 picture form-group">
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "form-control-file" %>
     </span>
     
 
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@picture.new_record? ? 'Upload new picture' : 'Edit picture', class: "btn btn-default") %>
     </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
 

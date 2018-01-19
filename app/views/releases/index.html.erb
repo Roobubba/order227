@@ -1,30 +1,44 @@
-<%= render 'shared/page_title', title: "All Venues" %>
 <div class="row mb-3">
   <div class="col text-center">
-    <%= link_to "ADD NEW VENUE", new_venue_path, class: "main-text main-text-header main-text-link" %>
+    <%= link_to "ADD NEW RELEASE", new_release_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
 
-<%= will_paginate %>
-<hr/>
+<%= render 'shared/page_title', title: "All Releases" %>
 
-<% @venues.each do |venue| %>
+
+<%= will_paginate %>
+<% if @releases.total_pages > 1 %>
+  <hr/>
+<% end %>
+
+<% @releases.each do |release| %>
   <div class="row">
-    <div class="col-lg-6">
-      <section class="main-text">
-        <p><strong>Venue: </strong><%= display_venue(venue) %></p>
-        <p><strong>Contact Name: </strong><% if !venue.contact_name? %>(NONE PRESENT)<% else %><%= venue.contact_name %><% end %></p>
-        <p><strong>Contact Details: </strong><% if !venue.contact_detail? %>(NONE PRESENT)<% else %><%= venue.contact_detail %><% end %></p>
+    <div class="col-3">
+      <section class="text-center mt-3">
+        <% if !release.picture_id? %>
+          (No IMG)  
+        <% else %>
+          <%= image_tag(release.picture.picture.middle.url, {class: "img-thumbnail", alt_text: release.picture.alt_text}) %>
+        <% end %>
       </section>
     </div>
-    <div class="col-6 col-lg-3 text-center align-self-center">
-      <%= link_to "EDIT", edit_venue_path(venue), class: "main-text main-text-header main-text-link" %>
+    <div class="col-lg-5">
+      <section class="main-text">
+        <p><strong>Title: </strong><%= release.title + " (" + release.release_type.name + ")" %></p>
+        <p><strong>Link: </strong><%= link_to release.url, release.url, {class: "main-text-link"} %></p>
+        <p><strong>Released on: </strong><%= release.release_date.to_formatted_s(:rfc822) %></p>
+        <p><strong>Comments: </strong><% if !release.comments? %>(No comments)<% else %><%= release.comments %><% end %></p>
+      </section>
     </div>
-    <div class="col-6 col-lg-3 text-center align-self-center">
-      <%= link_to "DELETE", venue, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the venue: " + display_venue(venue) } %>
+    <div class="col-6 col-lg-2 text-center align-self-center">
+      <%= link_to "EDIT", edit_release_path(release), class: "main-text main-text-header main-text-link" %>
+    </div>
+    <div class="col-6 col-lg-2 text-center align-self-center">
+      <%= link_to "DELETE", release, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the release: " + release.title } %>
     </div>
   </div>
-  <% if venue != @venues.last %>
+  <% if release != @releases.last %>
     <hr/>
   <% end %>
 <% end %>

@@ -1,24 +1,27 @@
-<%= render 'shared/page_title', title: "All Pictures" %>
 <div class="row mb-3">
   <div class="col text-center">
     <%= link_to "ADD NEW PICTURE", new_picture_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
 
+<%= render 'shared/page_title', title: "All Pictures" %>
+
 <%= will_paginate %>
-<hr/>
+<% if @pictures.total_pages > 1 %>
+  <hr/>
+<% end %>
 
 <% @pictures.each do |picture| %>
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-6 text-center ">
       <section class="main-text">
-        <%= link_to image_tag(picture.picture.large, class: "img img-fluid"), picture_path(picture) %>
+        <%= link_to image_tag(picture.picture.middle, class: "img img-fluid img-thumbnail"), edit_picture_path(picture) %>
       </section>
     </div>
-    <div class="col-6 col-lg-2 text-center align-self-center">
+    <div class="col-3 text-center align-self-center">
       <%= link_to "EDIT", edit_picture_path(picture), class: "main-text main-text-header main-text-link" %>
     </div>
-    <div class="col-6 col-lg-2 text-center align-self-center">
+    <div class="col-3 text-center align-self-center">
       <%= link_to "DELETE", picture, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete this picture?" } %>
     </div>
   </div>

@@ -1,46 +1,43 @@
-<%= render 'shared/errors', obj: @venue %> 
+<%= render 'shared/errors', obj: @release %> 
 
-<%= form_for @venue do |f| %>
+<%= form_for @release do |f| %>
   <div class="row main-text">
-    <div class="col-sm-5">
-      <%= f.label :name %>
+    <div class="col-sm-5 form-group">
+      <%= f.label :title %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :name %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :title, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
-      <%= f.label :city %>
+    <div class="col-sm-5 form-group">
+      <%= f.label :url, "Bandcamp Link" %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :city %>
+    <div class="col-sm-7 form-group">
+      <%= f.url_field :url, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
-      <%= f.label :country %>
+    <div class="col-sm-5 form-group">
+      <%= f.label :release_date %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :country %>
+    <div class="col-sm-7 form-group">
+      <%= f.date_field :release_date, class: "form-control" %>
     </div> 
-    <div class="col-sm-5">
-      <%= f.label :contact_name %> (Optional)
+    <div class="col-sm-5 form-group">
+      <%= f.label :comments %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :contact_name %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_area :comments, size: "50x10", class: "form-control" %>
     </div>
-    <div class="col-sm-5">
-      <%= f.label :contact_detail %> (Optional)
+    <div class="col-sm-5 form-group">
+      <%= f.label :release_type_id, "Release Type" %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :contact_detail %>
+    <div class="col-sm-7 form-group">
+      <%= f.select :release_type_id, options_for_select(ReleaseType.all.order(:name).map{ |s| [s.name, s.id]}), {include_blank: "Select Release Type"}, {class: "form-control"} %>
+    </div>    
+    <div class="col-6 text-center mt-4 form-group">
+      <%= f.submit(@release.new_record? ? 'Create new Release' : 'Edit Release', class: "btn btn-default") %>
     </div>
-    <div class="col-6 text-center mt-4">
-      <%= f.submit(@venue.new_record? ? 'Create new Venue' : 'Edit Venue', class: "btn btn-default") %>
-    </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
-
   </div>
-  
 <% end %>
-
 <hr/>

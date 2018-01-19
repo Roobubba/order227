@@ -1,12 +1,15 @@
-<%= render 'shared/page_title', title: "All Bands" %>
 <div class="row mb-3">
   <div class="col text-center">
     <%= link_to "ADD NEW BAND", new_band_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
 
+<%= render 'shared/page_title', title: "All Bands" %>
+
 <%= will_paginate %>
-<hr/>
+<% if @bands.total_pages > 1 %>
+  <hr/>
+<% end %>
 
 <% @bands.each do |band| %>
   <div class="row">

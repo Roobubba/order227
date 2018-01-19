@@ -6,8 +6,8 @@ class Show < ActiveRecord::Base
   belongs_to :venue
   accepts_nested_attributes_for :venue, reject_if: :all_blank
   
-  has_one :picture, dependent: :destroy
-
+  belongs_to :picture
+  accepts_nested_attributes_for :picture, reject_if: :all_blank
   
   validates :date, presence: true
   validates :venue_id, presence: true

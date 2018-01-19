@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  root 'pages#home'
+  root 'posts#index'
   
-  get '/home', to: 'pages#home', as: 'home'
   get '/bio', to: 'pages#bio', as: 'bio'
   get '/news', to: 'pages#news', as: 'news'
   get '/music', to: 'pages#music', as: 'music'  
-  get '/videos', to: 'pages#videos', as: 'videos'
   get '/gallery', to: 'pages#gallery', as: 'gallery'
   get '/contact', to: 'pages#contact', as: 'contact'
   get '/siteadmin', to: 'pages#siteadmin', as: 'siteadmin'
@@ -28,15 +26,15 @@ Rails.application.routes.draw do
   post '/login', to: 'logins#create'
   get '/logout', to: 'logins#destroy'
   
-  resources :posts
+  resources :posts, except: [:show]
   resources :pictures
   resources :shows
   resources :bands
   resources :venues, except: [:show]
   resources :videos
-  resources :releases
-  resources :release_types
-  resources :tracks
+  resources :releases, except: [:show]
+  resources :release_types, except: [:show]
+  resources :tracks, except: [:show]
   
   
 end

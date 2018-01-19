@@ -1,6 +1,9 @@
 class Picture < ActiveRecord::Base
 
-  belongs_to :show, optional: true, dependent: :destroy
+  has_many :shows, dependent: :destroy
+  has_many :releases, dependent: :destroy
+  has_many :posts
+  
   mount_uploader :picture, PictureUploader
   
   before_save :set_alt_text

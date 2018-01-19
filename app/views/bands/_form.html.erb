@@ -1,35 +1,35 @@
 <%= render 'shared/errors', obj: @band %> 
 
 <%= form_for @band do |f| %>
-  <div class="row main-text">
+  <div class="row main-text form-group">
     <div class="col-sm-5">
       <%= f.label :name %>
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :name %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :email %> (optional)
     </div>
-    <div class="col-sm-7">
-      <%= f.email_field :email %>
+    <div class="col-sm-7 form-group">
+      <%= f.email_field :email, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :contact_name %> (optional)
     </div>
-    <div class="col-sm-7">
-      <%= f.text_field :contact_name %>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :contact_name, class: "form-control" %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 form-group">
       <%= f.label :url, 'Band Page' %> (optional)
     </div>
-    <div class="col-sm-7">
-      <%= f.url_field :url %>
+    <div class="col-sm-7 form-group">
+      <%= f.url_field :url, class: "form-control" %>
     </div>   
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@band.new_record? ? 'Create new Band' : 'Edit Band Profile', class: "btn btn-default") %>
     </div>
-    <div class="col-6 text-center mt-4">
+    <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
     </div>
 

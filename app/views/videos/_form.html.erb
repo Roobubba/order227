@@ -1,0 +1,46 @@
+<%= render 'shared/errors', obj: @video %> 
+
+<%= form_for @video do |f| %>
+  <div class="row main-text">
+    <div class="col-sm-5 form-group">
+      <%= f.label :title %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="col-sm-5 form-group">
+      <%= f.label :url, "Youtube (Embedded) Link" %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.url_field :url, class: "form-control" %>
+    </div>
+    <div class="col-sm-5 form-group">
+      <%= f.label :credit %> (Optional)
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.text_area :credit, class: "form-control" %>
+    </div> 
+    <div class="col-sm-5 form-group">
+      <%= f.label :date %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.date_field :date, class: "form-control" %>
+    </div> 
+    <div class="col-sm-5 form-group">
+      <%= f.label :venue_id %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.select :venue_id, options_for_select(Venue.all.order(:name).map{ |s| [display_venue(s), s.id]}), {include_blank: "Select Venue"}, { class: "form-control" } %>
+    </div>
+    <div class="col-6 text-center mt-4 form-group">
+      <%= f.submit(@video.new_record? ? 'Create new Video' : 'Edit Video', class: "btn btn-default") %>
+    </div>
+    <div class="col-6 text-center mt-4 form-group">
+      <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
+    </div>
+
+  </div>
+  
+<% end %>
+
+<hr/>

@@ -1,32 +1,36 @@
-<%= render 'shared/page_title', title: "All Tracks" %>
 <div class="row mb-3">
   <div class="col text-center">
     <%= link_to "ADD NEW TRACK", new_track_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
 
+<%= render 'shared/page_title', title: "All Tracks" %>
+
 <%= will_paginate %>
-<hr/>
+<% if @tracks.total_pages > 1 %>
+  <hr/>
+<% end %>
 
 <% @tracks.each do |track| %>
   <div class="row">
     <div class="col-lg-6">
       <section class="main-text">
-        <p><strong>Title: </strong><%= display_venue(venue) %></p>
-        <p><strong>Link: </strong><%= venue.contact_name %></p>
+        <p><strong>Title: </strong><%= track.title %></p>
+        <p><strong>Link: </strong><%= link_to track.url, track.url, {class: "main-text-link"} %></p>
         <p><strong>Recorded on: </strong><%= track.recorded_date.to_formatted_s(:rfc822) %></p>
-        <p><strong>Released as: </strong><%= track.release_id.contact_detail %></p>
-        <p><strong>Comments: </strong><% if !venue.contact_detail? %>(NONE PRESENT)<% else %><%= venue.contact_detail %><% end %></p>
+        <p><strong>Released as: </strong><%= link_to track.release.title, release_path(track.release), { class: "main-text-link" } %></p>
+        <p><strong>Comments: </strong><%= track.comments %></p>
+        <p><strong>Lyrics: </strong><%= simple_format(track.lyrics) %></p>
       </section>
     </div>
     <div class="col-6 col-lg-3 text-center align-self-center">
-      <%= link_to "EDIT", edit_venue_path(venue), class: "main-text main-text-header main-text-link" %>
+      <%= link_to "EDIT", edit_track_path(track), class: "main-text main-text-header main-text-link" %>
     </div>
     <div class="col-6 col-lg-3 text-center align-self-center">
-      <%= link_to "DELETE", venue, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the venue: " + display_venue(venue) } %>
+      <%= link_to "DELETE", track, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the track: " + track.title } %>
     </div>
   </div>
-  <% if venue != @venues.last %>
+  <% if track != @tracks.last %>
     <hr/>
   <% end %>
 <% end %>

@@ -1,13 +1,16 @@
-<%= render 'shared/page_title', title: "All Subscribers" %>
-
 <div class="row mb-3">
   <div class="col text-center">
     <%= link_to "ADD NEW Subscriber", register_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
 
+<%= render 'shared/page_title', title: "All Subscribers" %>
+
+
 <%= will_paginate %>
-<hr/>
+<% if @users.total_pages > 1 %>
+  <hr/>
+<% end %>
 <% @users.each do |user| %>
   <div class="row">
     <div class="col-3">
