@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   end
 
   def gallery
+    @pictures = Picture.all.order(updated_at: :desc).paginate(page: params[:page], per_page: 24)
   end
   
   def contact

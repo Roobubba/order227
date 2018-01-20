@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120170238) do
+ActiveRecord::Schema.define(version: 20180120193912) do
 
   create_table "band_shows", force: :cascade do |t|
     t.integer "band_id"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20180120170238) do
     t.text "comments"
     t.date "release_date"
     t.integer "release_type_id"
-    t.integer "picture_id"
     t.string "release_embed_url"
   end
 

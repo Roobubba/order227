@@ -25,11 +25,11 @@
     </div>
 
     <% if logged_in? and current_user.admin? %>
-      <div class="col-6 col-lg-2 text-center align-self-center">
-        <%= link_to "EDIT", edit_video_path(video), class: "main-text main-text-header main-text-link" %>
+      <div class="col-6 main-text main-text-header text-center align-self-center">
+        <%= link_to "EDIT", edit_video_path(video), class: "main-text-link" %>
       </div>
-      <div class="col-6 col-lg-2 text-center align-self-center">
-        <%= link_to "DELETE", video, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the video: " + video.title } %>
+      <div class="col-6 main-text main-text-header text-center align-self-center">
+        <%= link_to "DELETE", video, method: :delete, class: "main-text-link", data: { confirm: "Are you sure you want to delete the video: " + video.title } %>
       </div>
     <% end %>
   </div>

@@ -47,10 +47,10 @@ class ReleasesController < ApplicationController
   
   private
     def release_params
-      params.require(:release).permit(:title, :url, :comments, :release_type_id, :release_date, :picture_id)
+      params.require(:release).permit(:title, :url, :comments, :release_type_id, :release_date, :release_embed_url)
     end
    
-    def set_track
+    def set_release
       @release = Release.find(params[:id])
     end
     

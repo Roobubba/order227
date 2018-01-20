@@ -1,7 +1,6 @@
 class Picture < ActiveRecord::Base
 
   has_many :shows, dependent: :destroy
-  has_many :releases, dependent: :destroy
   has_many :posts
   
   mount_uploader :picture, PictureUploader

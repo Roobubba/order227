@@ -14,22 +14,12 @@
 
 <% @releases.each do |release| %>
   <div class="row">
-    <div class="col-3">
-      <section class="text-center mt-3">
-        <% if !release.picture_id? %>
-          (No IMG)  
-        <% else %>
-          <%= image_tag(release.picture.picture.middle.url, {class: "img-thumbnail", alt_text: release.picture.alt_text}) %>
-        <% end %>
-      </section>
-    </div>
-    <div class="col-lg-5">
+    <div class="col-lg-8">
       <section class="main-text">
         <p><strong>Title: </strong><%= release.title + " (" + release.release_type.name + ")" %></p>
         <p><strong>Link: </strong><%= link_to release.url, release.url, {class: "main-text-link"} %></p>
-        <p><strong>Bandcamp EmbeddedPlayer Link: </strong><%= link_to release.release_embed_url, release.release_embed_url, { class: "main-text-link" } %></p>
         <p><strong>Released on: </strong><%= release.release_date.to_formatted_s(:rfc822) %></p>
-        <p><strong>Comments: </strong><% if !release.comments? %>(No comments)<% else %><%= release.comments %><% end %></p>
+        <p><strong>Comments: </strong><% if !release.comments? %>(No comments)<% else %><%= simple_format(release.comments) %><% end %></p>
       </section>
     </div>
     <div class="col-6 col-lg-2 text-center align-self-center">

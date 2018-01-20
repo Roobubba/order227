@@ -7,6 +7,8 @@ class PicturesController < ApplicationController
   
   def index
     @pictures = Picture.paginate(page: params[:page], per_page: 10)
+   #Picture.all.each { |i| i.picture.recreate_versions! }
+  
   end
   
   def show
