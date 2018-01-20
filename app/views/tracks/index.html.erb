@@ -15,12 +15,10 @@
   <div class="row">
     <div class="col-lg-6">
       <section class="main-text">
-        <p><strong>Title: </strong><%= track.title %></p>
+        <p><strong>Title: </strong><%= link_to track.title, track_path(track), class: "main-text-link" %></p>
         <p><strong>Link: </strong><%= link_to track.url, track.url, {class: "main-text-link"} %></p>
         <p><strong>Recorded on: </strong><%= track.recorded_date.to_formatted_s(:rfc822) %></p>
-        <p><strong>Released as: </strong><%= link_to track.release.title, release_path(track.release), { class: "main-text-link" } %></p>
-        <p><strong>Comments: </strong><%= track.comments %></p>
-        <p><strong>Lyrics: </strong><%= simple_format(track.lyrics) %></p>
+        <p><strong>Released on: </strong><%= link_to release_title_and_type(track.release), release_path(track.release), { class: "main-text-link" } %></p>
       </section>
     </div>
     <div class="col-6 col-lg-3 text-center align-self-center">

@@ -6,8 +6,10 @@ class Release < ActiveRecord::Base
 
   validates :title, presence: true, length: { minimum: 1, maximum: 60 }
   validates :url, presence: true, length: { minimum: 1, maximum: 100 }
+  validates :release_embed_url, presence: true, length: { minimum: 1, maximum: 200 }
   validates :release_date, presence: true
   validates :release_type_id, presence: true
   validates :comments, length: { maximum: 2000 }
   validates :picture_id, presence: true
+  
 end

@@ -2,7 +2,7 @@ class TracksController < ApplicationController
   
   before_action :require_user
   before_action :require_admin_user
-  before_action :set_track, only: [:edit, :update, :destroy]
+  before_action :set_track, only: [:edit, :update, :destroy, :show]
   before_action :check_for_cancel, only: [:update, :create]
   
   def index
@@ -10,6 +10,10 @@ class TracksController < ApplicationController
   end
   
   def edit
+    
+  end
+  
+  def show
     
   end
   

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  root 'posts#index'
+  root 'posts#home'
   
   get '/bio', to: 'pages#bio', as: 'bio'
-  get '/news', to: 'pages#news', as: 'news'
+  get '/news', to: 'posts#index', as: 'news'
   get '/music', to: 'pages#music', as: 'music'  
   get '/gallery', to: 'pages#gallery', as: 'gallery'
   get '/contact', to: 'pages#contact', as: 'contact'
@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   get '/login', to: 'logins#new'
   post '/login', to: 'logins#create'
   get '/logout', to: 'logins#destroy'
-  
+  get '/home', to: 'posts#home'
+   
   resources :posts, except: [:show]
   resources :pictures
   resources :shows
@@ -34,7 +35,6 @@ Rails.application.routes.draw do
   resources :videos
   resources :releases, except: [:show]
   resources :release_types, except: [:show]
-  resources :tracks, except: [:show]
-  
+  resources :tracks
   
 end

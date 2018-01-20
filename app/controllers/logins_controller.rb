@@ -19,7 +19,7 @@ class LoginsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:success] = "Logout successful"
-    render '/pages/home'
+    redirect_to root_path
   end
 
 end

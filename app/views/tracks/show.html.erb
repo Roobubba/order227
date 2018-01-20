@@ -1,0 +1,20 @@
+<%= render 'shared/page_title', title: @track.title, link: edit_track_path(@track) %>
+<div class="row">
+  <div class="col-12">
+    <section class="main-text">
+      <p><strong>Title: </strong><%= @track.title %></p>
+      <p><strong>Link: </strong><%= link_to @track.url, @track.url, {class: "main-text-link"} %></p>
+      <p><strong>Recorded on: </strong><%= @track.recorded_date.to_formatted_s(:rfc822) %></p>
+      <p><strong>Released on: </strong><%= link_to release_title_and_type(@track.release), release_path(@track.release), { class: "main-text-link" } %></p>
+      <p><strong>Comments: </strong><%= @track.comments %></p>
+      <p><strong>Lyrics: </strong><%= simple_format(@track.lyrics) %></p>
+    </section>
+  </div>
+  <div class="col-6  text-center align-self-center">
+    <%= link_to "EDIT", edit_track_path(@track), class: "main-text main-text-header main-text-link" %>
+  </div>
+  <div class="col-6 text-center align-self-center">
+    <%= link_to "DELETE", @track, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the track: " + @track.title } %>
+  </div>
+</div>
+<hr/>

@@ -8,37 +8,22 @@
 
 <%= render 'shared/page_title', title: "All Videos" %>
 
-
 <%= will_paginate %>
 <% if @videos.total_pages > 1 %>
   <hr/>
 <% end %>
 <% @videos.each do |video| %>
   <div class="row">
-    <div class="col-4">
-      <section class="text-center mt-3">
-        <div class="embed-responsive embed-responsive-16by9">
-          <%= link_to youtube_link(video.url), video_path(video) %>
-        </div>
+    <div class="col-12">
+      <section class="text-center main-text main-text-header mt-3">      
+        <%= link_to video_header(video), video_path(video), { class: "main-text-link" } %>
       </section>
     </div>
-    <% if logged_in? and current_user.admin? %>
-      <div class="col-8 col-lg-4">
-    <% else %>
-      <div class="col-8">
-    <% end %>
-      <section class="main-text">
-        <p><strong>Title: </strong><%= link_to video.title, video_path(video), class: "main-text main-text-link" %></p>
-        <p><strong>Credit: </strong><% if !video.credit? %>(N/A)<% else %><%= video.credit %><% end %></p>
-        <p><strong>Date: </strong><%= format_date(video.date) %></p>
-        <p><strong>Venue: </strong>
-        <% if logged_in? and current_user.admin? %>
-          <%= link_to display_venue(video.venue), edit_venue_path(video.venue), class: "main-text main-text-link" %>
-        <% else %>
-          <%= display_venue(video.venue) %>
-        <% end %>
-      </section>
+
+    <div class="col-12 embed-responsive embed-responsive-16by9">
+      <%= youtube_link(video.url) %>
     </div>
+
     <% if logged_in? and current_user.admin? %>
       <div class="col-6 col-lg-2 text-center align-self-center">
         <%= link_to "EDIT", edit_video_path(video), class: "main-text main-text-header main-text-link" %>
@@ -55,4 +40,3 @@
 
 <%= will_paginate %>
 <hr/>
-  

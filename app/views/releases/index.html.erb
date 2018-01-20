@@ -27,6 +27,7 @@
       <section class="main-text">
         <p><strong>Title: </strong><%= release.title + " (" + release.release_type.name + ")" %></p>
         <p><strong>Link: </strong><%= link_to release.url, release.url, {class: "main-text-link"} %></p>
+        <p><strong>Bandcamp EmbeddedPlayer Link: </strong><%= link_to release.release_embed_url, release.release_embed_url, { class: "main-text-link" } %></p>
         <p><strong>Released on: </strong><%= release.release_date.to_formatted_s(:rfc822) %></p>
         <p><strong>Comments: </strong><% if !release.comments? %>(No comments)<% else %><%= release.comments %><% end %></p>
       </section>

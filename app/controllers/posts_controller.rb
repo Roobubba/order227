@@ -6,6 +6,10 @@ class PostsController < ApplicationController
     require_admin_user(root_path)
   end
 
+  def home
+    @posts = Post.order(updated_at: :desc).first(2)
+  end
+  
   def index
     @posts = Post.order(updated_at: :desc).paginate(page: params[:page], per_page: 10)
   end
