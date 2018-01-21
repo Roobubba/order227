@@ -3,6 +3,9 @@ class Picture < ActiveRecord::Base
   has_many :shows, dependent: :destroy
   has_many :posts
   
+  default_scope { order('updated_at DESC') }
+  
+  
   mount_uploader :picture, PictureUploader
   
   before_save :set_alt_text

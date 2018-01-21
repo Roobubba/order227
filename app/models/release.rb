@@ -10,4 +10,7 @@ class Release < ActiveRecord::Base
   validates :release_type_id, presence: true
   validates :comments, length: { maximum: 2000 }
 
+  
+  default_scope { order('release_date DESC') }
+
 end

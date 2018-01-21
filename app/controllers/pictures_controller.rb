@@ -1,8 +1,9 @@
 class PicturesController < ApplicationController
   
-  before_action :require_user
+  before_action :set_picture, only: [:edit, :update, :destroy]
+
   before_action :require_admin_user
-  before_action :set_picture, only: [:edit, :update, :destroy, :show]
+
   before_action :check_for_cancel, only: [:update, :create]
   
   def index
@@ -11,9 +12,6 @@ class PicturesController < ApplicationController
   
   end
   
-  def show
-
-  end
 
   def edit
     
@@ -37,7 +35,7 @@ class PicturesController < ApplicationController
   def update
     if @picture.update(picture_params)
       flash[:success] = "Picture details updated successfully"
-      redirect_to picture_path(@picture)
+      redirect_to pictures_path
     else
       render 'edit'
     end

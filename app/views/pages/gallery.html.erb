@@ -6,8 +6,8 @@
     <% end %>
     <div class="row">
       <% @pictures.each do |picture| %>
-        <div class="col-4 col-md-3 col-lg-2">
-          <%= link_to image_tag(picture.picture.middle.url, {class: "img-fluid img-thumbnail"}), "#", :data => { "data-toggle" => "modal", "data-target" => ".myModal"  } %>
+        <div class="col-6 col-md-4 col-lg-3 text-center">
+          <%= link_to image_tag(picture.picture.middle.url, {class: "img-fluid img-thumbnail"}), "#picture-view-modal", :class => "btn", "data-toggle" => "modal", "data-picture" => picture.picture.large.url, "data-title" => picture.alt_text  %>
         </div>
       <% end %>
     </div>
@@ -16,10 +16,26 @@
   <% will_paginate @pictures %>
 </div>
 
-<div class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      ...
+
+<div class="modal hide fade" id="picture-view-modal" title="View Picture">
+  <div class=".modal-dialog-centered modal-dialog">
+    <div class="modal-body a-unique-class">
+      <img class="img-fluid modal-img">
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+$('#picture-view-modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var pic = button.data('picture') // Extract info from data-* attributes
+  var title = button.data('title')
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text(title)
+  modal.find('.modal-img').attr('src', pic)
+  modal.find('.modal-img').attr('alt', title);
+  
+})
+</script>

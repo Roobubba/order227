@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   
   before_action :require_admin_user, only: [:siteadmin]
+  
     
   def bio
   end
@@ -9,11 +10,11 @@ class PagesController < ApplicationController
   end
   
   def music
-    @releases = Release.all.order(release_date: :desc)
+    @releases = Release.all
   end
 
   def gallery
-    @pictures = Picture.all.order(updated_at: :desc).paginate(page: params[:page], per_page: 24)
+    @pictures = Picture.paginate(page: params[:page], per_page: 24)
   end
   
   def contact

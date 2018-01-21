@@ -11,8 +11,8 @@ class ShowsController < ApplicationController
   end
 
   def index
-    @futureshows = Show.where('date >= ?', Date.today).order(:date).paginate(page: params[:page], per_page: 5)
-    @pastshows = Show.where('date < ?', Date.today).order(date: :desc).paginate(page: params[:page], per_page: 10)
+    @futureshows = Show.upcoming.paginate(page: params[:page], per_page: 5)
+    @pastshows = Show.pastshows.paginate(page: params[:page], per_page: 10)
   end
 
   def edit

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/home', to: 'posts#home'
    
   resources :posts, except: [:show]
-  resources :pictures
+  resources :pictures, except: [:show]
   resources :shows
   resources :bands
   resources :venues, except: [:show]
