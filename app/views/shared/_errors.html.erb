@@ -1,6 +1,6 @@
 <% if obj.errors.any? %>
   <div class="row justify-content-center">
-    <div class="alert alert-danger col-8">
+    <div class="alert alert-danger alert-error col-8">
       <a class="close" data-dismiss="alert">&#215;</a>
       <h5>Please correct the following errors:</h5>
       <ul>
@@ -10,3 +10,11 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+//$(document).on('turbolinks:load', function(){
+//    $(".alert-error").delay(10000).slideUp(500, function(){
+//          $(".alert-error").alert('close');
+//      });
+//    });
+</script>

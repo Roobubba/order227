@@ -7,11 +7,11 @@ class PostsController < ApplicationController
   end
 
   def home
-    @posts = Post.first(2)
+    @posts = Post.pinned.paginate(page: params[:page], per_page: 10)
   end
   
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 10)
+    @posts = Post.paginate(page: params[:page], per_page: 15)
   end
 
   def edit
@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
+    @post.build_picture
   end
   
   def create
@@ -49,7 +50,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:post_text, :title, :picture_id, :picture_url, picture_attributes: [:id])
+      params.require(:post).permit(:post_text, :title, :pinned, :picture_id, :picture_url, pictures_attributes: [:id, :picture, :alt_text, :in_gallery])
     end
    
     def set_post

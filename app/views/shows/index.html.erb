@@ -43,7 +43,7 @@
         <p><strong>Date: </strong><%= link_to format_date(show.date), show_path(show), class: "main-text main-text-link" %></p>
         <p><strong>Venue: </strong>
         <% if logged_in? and current_user.admin? %>
-          <%= link_to display_venue(show.venue), venue_path(show.venue), class: "main-text main-text-link" %>
+          <%= link_to display_venue(show.venue), edit_venue_path(show.venue), class: "main-text main-text-link" %>
         <% else %>
           <%= display_venue(show.venue) %>
         <% end %>

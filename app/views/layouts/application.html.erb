@@ -13,9 +13,11 @@
   <%= render 'layouts/navigation' %>
   
   <% if logged_in? and current_user.admin? %>
-    <div class="row">
-      <div class="col mb-5 text-center">
-        <%= link_to "MANAGE CONTENT", siteadmin_path, class: "main-text main-text-header main-text-link" %>
+    <div class="container">
+      <div class="row">
+        <div class="col mb-5 text-center">
+          <%= link_to "MANAGE CONTENT", siteadmin_path, class: "main-text main-text-header main-text-link" %>
+        </div>
       </div>
     </div>
   <% end %>

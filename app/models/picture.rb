@@ -1,10 +1,9 @@
 class Picture < ActiveRecord::Base
 
-  has_many :shows, dependent: :destroy
-  has_many :posts
+  has_many :shows, inverse_of: :picture, dependent: :destroy
+  has_many :posts, inverse_of: :picture, autosave: true
   
   default_scope { order('updated_at DESC') }
-  
   
   mount_uploader :picture, PictureUploader
   
@@ -18,9 +17,7 @@ class Picture < ActiveRecord::Base
   
   validates :picture, presence: true
   validate :picture_size
-  default_scope -> { order(updated_at: :desc) }
 
-  
   private
     def picture_size
       if picture.size > 10.megabytes

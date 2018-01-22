@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   before_action :set_user, only: [:edit, :update, :destroy, :show]
   before_action :require_same_user, only: [:edit, :update, :show, :destroy, :create, :new]
-  before_action :require_admin_user, only: [:index]
+  before_action :require_admin_user, only: [:index, :download_all_emails]
   
   def index
      @users = User.paginate(page: params[:page], per_page: 25)
@@ -54,6 +54,11 @@ class UsersController < ApplicationController
       reset_session
       redirect_to root_path
     end
+  end
+
+  def download_all_emails
+    emails = User.email_list
+    send_data emails, type: 'application/octet-stream', filename: Date.today.to_s + '_o227mail.txt', :disposition => 'attachment'
   end
 
   private

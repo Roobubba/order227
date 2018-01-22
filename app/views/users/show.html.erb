@@ -5,6 +5,8 @@
       <section class="main-text">
         <p><strong>Username: </strong> <%= link_to @user.username, edit_user_path(@user), class: "main-text main-text-link" %> </p>
         <p><strong>Registered Email: </strong><%= @user.email %></p>
+        <p><small><strong>Date Created: </strong><%= @user.created_at %></small></p>
+        <p><small><strong>Last Updated: </strong><%= @user.updated_at %></small></p>        
       </section>
   </div>
 </div>

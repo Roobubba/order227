@@ -4,14 +4,13 @@ class PicturesController < ApplicationController
 
   before_action :require_admin_user
 
-  before_action :check_for_cancel, only: [:update, :create]
+  before_action :check_for_cancel, only: [:update, :create, :createmodal]
   
   def index
     @pictures = Picture.paginate(page: params[:page], per_page: 10)
    #Picture.all.each { |i| i.picture.recreate_versions! }
   
   end
-  
 
   def edit
     
@@ -27,11 +26,12 @@ class PicturesController < ApplicationController
       render 'new'
     end
   end
+
   
   def new
     @picture = Picture.new
   end
-  
+
   def update
     if @picture.update(picture_params)
       flash[:success] = "Picture details updated successfully"

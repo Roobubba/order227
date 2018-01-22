@@ -1,5 +1,11 @@
 <%= render 'shared/page_title', title: "Order#227 - Not One Step Back" %>
 
+<%= will_paginate @posts %>
+
+<% if @posts.total_pages > 1 %>
+  <hr/>
+<% end %>
+
 <% @posts.each do |o| %>
   
   <div class="row d-flex">
@@ -41,5 +47,7 @@
   <% end %>
 
 <% end %>
+
+<%= will_paginate @posts %>
 
 <hr/>

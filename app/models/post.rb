@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   validates :post_text, presence: true, length: { minimum: 5, maximum: 2000 }
   validates :title, presence: true, length: { minimum: 5, maximum: 50 }
   
-  default_scope { order('updated_at DESC') }
+  default_scope { order('created_at DESC') }
+
+  scope :pinned, -> { where(pinned: true) }
   
 end

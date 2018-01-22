@@ -8,4 +8,8 @@ class Venue < ActiveRecord::Base
   validates :city, presence: true, length: { minimum: 1, maximum: 35 }
   validates :country, presence: true, length: { minimum: 1, maximum: 35 }
 
+  default_scope { order('name ASC') }
+  
+  scope :newest_first, -> { reorder("created_at DESC") }
+
 end

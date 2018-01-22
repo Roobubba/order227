@@ -2,7 +2,7 @@
 <div class="row mb-3">
   <div class="col-11 offset-1">
     <section class="main-text">
-      <p><strong>Venue: </strong><%= link_to display_venue(@show.venue), venue_path(@show.venue), class: "main-text main-text-link" %></p>
+      <p><strong>Venue: </strong><%= link_to display_venue(@show.venue), edit_venue_path(@show.venue), class: "main-text main-text-link" %></p>
       <p><strong>Date: </strong><%= format_date(@show.date) %></p>
       <p><strong>Bands: </strong>
         <% @show.bands.each do |band| %>

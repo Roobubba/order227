@@ -14,14 +14,29 @@
     <div class="col-sm-7 form-group">
       <%= f.text_area :post_text, class: "form-control" %>
     </div>
-
     <div class="col-sm-5 form-group">
-      <%= f.label :picture_id %>
+      <%= f.label :pinned, 'Pin to Homepage?' %>
     </div>
     <div class="col-sm-7 form-group">
-      <%= f.select :picture_id, options_for_select(Picture.all.order(updated_at: :desc).map{ |s| [s.alt_text, s.id, {'data-img-src'=>s.picture.middle.url}]}), {include_blank: "Upload New Or Select:"}, {class: "image-picker show-html form-control"} %>
+      <%= f.check_box :pinned, class: "big-checkbox form-control" %>
     </div>
-                                      MAKE THIS INTO A MODAL AND FIX THE SELECTION AND HIGHLIGHTING!
+
+    <div class="col-sm-5 form-group">
+      <%=f.label :picture_id %>
+    </div>
+
+    <div class="col-sm-7 form-group">
+      <%= f.select :picture_id, options_for_select(Picture.all.map{ |s| [s.alt_text, s.id]}), {include_blank: "New Picture (or select existing)"}, {class: "dropdown-options form-control", id: "picture-dropdown" } %>
+    </div>
+    
+    <div class="col-sm-10 offset-sm-1 form-group">     
+      <div class="#pictures collapse highlight-background" id="collapse-form">
+        <%= f.fields_for :pictures do |picture| %>
+          <%= render 'picture_fields', f: picture %>
+        <% end %>
+      </div>
+    </div>
+    
 
     <div class="col-sm-5 form-group">
       <%= f.label :picture_url, 'URL for picture' %> (Optional)
@@ -39,8 +54,22 @@
 <% end %>
 <hr/>
 
+
 <script type="text/javascript">
- $(function() {
-  $("select").imagepicker();
- });
+$(document).ready(function(){
+  $('.collapse').collapse();
+});
+
+$('#picture-dropdown').change(function(){
+  opt = $(this).val();
+  if (opt != ""){
+    $('#collapse-form').collapse('hide');
+  }
+  else {
+    $('#collapse-form').collapse('show');
+  }
+});
+
+
+
 </script>

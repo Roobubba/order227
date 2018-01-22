@@ -3,8 +3,15 @@
     <%= link_to "ADD NEW Subscriber", register_path, class: "main-text main-text-header main-text-link" %>
   </div>
 </div>
-
+<hr/>
+<div class="row my-3">
+  <div class="col-12 text-center main-text main-text-header">
+    <%= link_to "Download Mailing List Addresses", dlemail_path, class: "main-text-link" %>
+  </div>
+</div>
+<hr/>
 <%= render 'shared/page_title', title: "All Subscribers" %>
+
 
 
 <%= will_paginate %>

@@ -26,9 +26,13 @@ Rails.application.routes.draw do
   post '/login', to: 'logins#create'
   get '/logout', to: 'logins#destroy'
   get '/home', to: 'posts#home'
-   
+  get '/dlemail', to: 'users#download_all_emails'
+  
   resources :posts, except: [:show]
   resources :pictures, except: [:show]
+  
+
+
   resources :shows
   resources :bands
   resources :venues, except: [:show]
