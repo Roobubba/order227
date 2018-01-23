@@ -20,24 +20,20 @@
     <div class="col-sm-7 form-group">
       <%= f.check_box :pinned, class: "big-checkbox form-control" %>
     </div>
-
+    
+    <div class="col-sm-5 form-group">
+      <p>Currently selected picture: </p>
+    </div>
+    <div class="col-sm-7 form-group img-panel">
+      <% if f.object.picture_id? %><%= image_tag Picture.find(f.object.picture_id).picture.middle.url, class: "img-thumbnail" %><% else %>(No picture selected)<% end %>
+    </div>
     <div class="col-sm-5 form-group">
       <%=f.label :picture_id %>
     </div>
-
     <div class="col-sm-7 form-group">
-      <%= f.select :picture_id, options_for_select(Picture.all.map{ |s| [s.alt_text, s.id]}), {include_blank: "New Picture (or select existing)"}, {class: "dropdown-options form-control", id: "picture-dropdown" } %>
+      <%= f.select :picture_id, options_for_select(Picture.all.map{ |s| [s.alt_text, s.id, {"data-img-src" => s.picture.middle.url, "data-img-alt" => s.alt_text}] }, @post.picture_id), {include_blank: "No Picture (or select below)"}, {class: "picture-dropdown form-control dropdown-options" } %>
     </div>
     
-    <div class="col-sm-10 offset-sm-1 form-group">     
-      <div class="#pictures collapse highlight-background" id="collapse-form">
-        <%= f.fields_for :pictures do |picture| %>
-          <%= render 'picture_fields', f: picture %>
-        <% end %>
-      </div>
-    </div>
-    
-
     <div class="col-sm-5 form-group">
       <%= f.label :picture_url, 'URL for picture' %> (Optional)
     </div>
@@ -54,22 +50,4 @@
 <% end %>
 <hr/>
 
-
-<script type="text/javascript">
-$(document).ready(function(){
-  $('.collapse').collapse();
-});
-
-$('#picture-dropdown').change(function(){
-  opt = $(this).val();
-  if (opt != ""){
-    $('#collapse-form').collapse('hide');
-  }
-  else {
-    $('#collapse-form').collapse('show');
-  }
-});
-
-
-
-</script>
+<%= render 'shared/pictureselectorjs' %>

@@ -17,11 +17,13 @@
     <div class="col-sm-5 form-group">
       <%= f.label :picture %>
     </div>
-    <div class="col-sm-7 form-group">
-      <% if f.object.picture? %><%= image_tag f.object.picture.middle.url, class: "img-thumbnail" %><% else %>(No picture attached)<% end %>
-    </div>
-    
-    <span class="col-10 picture form-group">
+    <% if f.object.picture? %>
+      <div class="col-sm-7 form-group">
+        <%= image_tag f.object.picture.middle.url, class: "img-thumbnail" %>
+      </div>
+    <% end %>
+
+    <span class="col-sm-7 picture form-group">
       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "form-control-file" %>
     </span>
     

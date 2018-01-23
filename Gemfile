@@ -21,8 +21,7 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'carrierwave-aws'
 gem 'fog-aws'
 gem 'mini_magick'
-gem 'cocoon'
-gem 'image-picker-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

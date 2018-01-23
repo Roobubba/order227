@@ -1,0 +1,15 @@
+<script type="text/javascript">
+$('.picture-dropdown').change(function(){
+  var value = $(this).val();
+  var image_panel = $('.img-panel');
+  if (value === ""){
+    image_panel.html("(No picture selected)");
+  }
+  else{
+    var x = $("[data-img-src][value=\"" + value + "\"]").attr("data-img-src");
+    var alt = $("[data-img-src][value=\"" + value + "\"]").attr("data-img-alt")
+    var string = '<img class="img-thumbnail" src="' + x + '" alt="' + alt +'">';
+    image_panel.html(string);      
+  }
+});
+</script>

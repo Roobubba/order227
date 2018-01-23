@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:edit, :update, :destroy]
-
   before_action only: [:edit, :update, :destroy, :new, :create] do 
     require_admin_user(root_path)
   end
@@ -20,7 +19,6 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
-    @post.build_picture
   end
   
   def create
@@ -50,9 +48,9 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:post_text, :title, :pinned, :picture_id, :picture_url, pictures_attributes: [:id, :picture, :alt_text, :in_gallery])
+      params.require(:post).permit(:post_text, :title, :pinned, :picture_id, :picture_url)
     end
-   
+    
     def set_post
       @post = Post.find(params[:id])
     end

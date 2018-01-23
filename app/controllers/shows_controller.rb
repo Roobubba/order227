@@ -16,30 +16,15 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    
+
   end
   
   def new
     @show = Show.new
-    if !@show.venue_id?
-      @show.build_venue
-    end
-    if !@show.picture_id?
-      @show.build_picture
-    end
   end
   
   def create
     @show = Show.new(show_params)
-
-    if show_params[:venue_id] == ""
-      venue = Venue.create(show_params[:venue_attributes])
-      @show.venue = venue
-    end
-    if show_params[:picture_id] == ""
-      picture = Picture.create(show_params[:picture_attributes])
-      @show.picture = picture
-    end
 
     if @show.save
       flash[:success] = "Show created successfully"
@@ -50,25 +35,7 @@ class ShowsController < ApplicationController
   end
   
   def update
-
-    updated_params = show_params
-    if show_params[:venue_id] != ""
-      updated_params = show_params.except(:venue_attributes)
-      @show.venue = Venue.find(show_params[:venue_id])
-    else
-      venue = Venue.create(show_params[:venue_attributes])
-      @show.venue = venue
-    end
-    if show_params[:picture_id] != ""
-      updated_params = updated_params.except(:picture_attributes)
-      @show.picture = Picture.find(show_params[:picture_id])
-    else
-      picture = Picture.create(show_params[:picture_attributes])
-      @show.picture = picture
-    end
-
-    
-    if @show.update(updated_params)
+    if @show.update(show_params)
       flash[:success] = "Show details updated successfully"
       redirect_to show_path(@show)
     else
@@ -84,7 +51,7 @@ class ShowsController < ApplicationController
 
   private
     def show_params
-      params.require(:show).permit(:date, :venue_id, :picture_id, :url, band_ids: [], venue_attributes: [:id, :name, :city, :country ], picture_attributes: [:id, :picture, :alt_text, :in_gallery])
+      params.require(:show).permit(:date, :venue_id, :picture_id, :url, band_ids: [])
     end
    
     def set_show

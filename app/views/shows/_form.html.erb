@@ -20,33 +20,22 @@
     </div> 
 
     <div class="col-sm-7 form-group">
-      <%= f.select :venue_id, options_for_select(Venue.all.map{ |s| [display_venue(s), s.id]}, @show.venue_id), {include_blank: "New Venue (or select existing)"}, {class: "dropdown-options form-control", id: "venue-dropdown" } %>
+      <%= f.select :venue_id, options_for_select(Venue.all.map{ |s| [display_venue(s), s.id]}, @show.venue_id), {include_blank: "Select Venue"}, {class: "dropdown-options form-control" } %>
     </div>
-    
-    <div class="col-sm-10 offset-sm-1 form-group">     
-      <div class="#venues collapse highlight-background" id="collapse-venue-form">
-        <%= f.fields_for :venue do |venue| %>
-          <%= render 'venue_fields', f: venue %>
-        <% end %>
-      </div>
+
+    <div class="col-sm-5 form-group">
+      <p>Currently selected picture: </p>
     </div>
-    
+    <div class="col-sm-7 form-group img-panel">
+      <% if f.object.picture_id? %><%= image_tag Picture.find(f.object.picture_id).picture.middle.url, class: "img-thumbnail" %><% else %>(No picture selected)<% end %>
+    </div>
     <div class="col-sm-5 form-group">
       <%=f.label :picture_id %>
     </div>
-
     <div class="col-sm-7 form-group">
-      <%= f.select :picture_id, options_for_select(Picture.all.map{ |s| [s.alt_text, s.id]}, @show.picture_id), {include_blank: "New Picture (or select existing)"}, {class: "dropdown-options form-control", id: "picture-dropdown" } %>
+      <%= f.select :picture_id, options_for_select(Picture.all.map{ |s| [s.alt_text, s.id, {"data-img-src" => s.picture.middle.url, "data-img-alt" => s.alt_text}] }, @show.picture_id), {include_blank: "No Picture (or select below)"}, {class: "picture-dropdown form-control dropdown-options" } %>
     </div>
-    
-    <div class="col-sm-10 offset-sm-1 form-group">     
-      <div class="#pictures collapse highlight-background" id="collapse-picture-form">
-        <%= f.fields_for :picture do |picture| %>
-          <%= render 'picture_fields', f: picture %>
-        <% end %>
-      </div>
-    </div>
-    
+  
     <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@show.new_record? ? 'Create new Show' : 'Edit Show', class: "btn btn-default") %>
     </div>
@@ -60,45 +49,4 @@
 
 <hr/>
 
-
-<script type="text/javascript">
-//$(document).ready(function(){
-  //$('.collapse').collapse();
-//});
-
-$('#venue-dropdown').on("change rightnow", function(){
-  opt = $(this).val();
-  venue_form = $('#collapse-venue-form');
-
-  if (opt != ""){
-    venue_form.collapse('hide');
-  }
-  else {
-    venue_form.collapse('show');
-    inputs = venue_form.find('input');
-    for (var i = 0; i<inputs.length; i++) {
-      if (inputs[i].type == 'text') {
-        inputs[i].value = '';
-      }
-    }
-  }
-}).triggerHandler("rightnow");
-$('#picture-dropdown').on("change rightnow", function(){
-  opt = $(this).val();
-  picture_form = $('#collapse-picture-form');
-  if (opt != ""){
-    picture_form.collapse('hide');
-  }
-  else {
-    picture_form.collapse('show');
-    inputs = picture_form.find('input');    
-    for (var i = 0; i<inputs.length; i++) {
-      if (inputs[i].type == 'text') {
-        inputs[i].value = '';
-      }
-    }
-  }
-}).triggerHandler("rightnow");
-
-
-</script>
+<%= render 'shared/pictureselectorjs' %>

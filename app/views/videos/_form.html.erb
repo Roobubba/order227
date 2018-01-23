@@ -25,12 +25,12 @@
     </div>
     <div class="col-sm-7 form-group">
       <%= f.date_field :date, class: "form-control" %>
-    </div> 
+    </div>
     <div class="col-sm-5 form-group">
-      <%= f.label :venue_id %>
+      <%= f.label :venue_id %> (Optional)
     </div>
     <div class="col-sm-7 form-group">
-      <%= f.select :venue_id, options_for_select(Venue.all.order(:name).map{ |s| [display_venue(s), s.id]}), {include_blank: "Select Venue"}, { class: "form-control" } %>
+      <%= f.select :venue_id, options_for_select(Venue.all.order(:name).map{ |s| [display_venue(s), s.id]}), {include_blank: "Leave Blank (or select below)"}, { class: "form-control" } %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@video.new_record? ? 'Create new Video' : 'Edit Video', class: "btn btn-default") %>

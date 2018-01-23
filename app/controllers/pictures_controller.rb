@@ -1,9 +1,7 @@
 class PicturesController < ApplicationController
   
   before_action :set_picture, only: [:edit, :update, :destroy]
-
   before_action :require_admin_user
-
   before_action :check_for_cancel, only: [:update, :create, :createmodal]
   
   def index
