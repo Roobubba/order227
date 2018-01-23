@@ -6,11 +6,11 @@ class PostsController < ApplicationController
   end
 
   def home
-    @posts = Post.pinned.paginate(page: params[:page], per_page: 10)
+    @posts = Post.pinned.paginate(page: params[:page], per_page: 5)
   end
   
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 15)
+    @posts = Post.paginate(page: params[:page], per_page: 10)
   end
 
   def edit
