@@ -17,7 +17,7 @@ class ReleasesController < ApplicationController
   end
   
   def show 
-  
+    @tracks = @release.tracks.order(:id)
   end
   
   def create
