@@ -19,7 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.11'
 gem 'carrierwave-aws'
-gem 'fog-aws'
+#gem 'fog-aws'
 gem 'mini_magick'
 
 # Use Capistrano for deployment
