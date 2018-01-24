@@ -1,8 +1,11 @@
 class ReleasesController < ApplicationController
   
-  before_action :require_user
-  before_action :require_admin_user
-  before_action :set_release, only: [:edit, :update, :destroy]
+  before_action :set_release, only: [:edit, :update, :destroy, :show]
+
+  before_action only: [:edit, :update, :destroy, :new, :create] do 
+    require_admin_user(releases_path)
+  end
+
   before_action :check_for_cancel, only: [:update, :create]
   
   def index
@@ -11,6 +14,10 @@ class ReleasesController < ApplicationController
   
   def edit
     
+  end
+  
+  def show 
+  
   end
   
   def create

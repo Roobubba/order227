@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123145401) do
+ActiveRecord::Schema.define(version: 20180124191815) do
 
   create_table "band_shows", force: :cascade do |t|
     t.integer "band_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180123145401) do
     t.text "lyrics"
     t.date "recorded_date"
     t.integer "release_id"
+    t.string "embed_url"
   end
 
   create_table "users", force: :cascade do |t|

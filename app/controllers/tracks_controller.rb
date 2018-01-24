@@ -51,7 +51,7 @@ class TracksController < ApplicationController
   
   private
     def track_params
-      params.require(:track).permit(:title, :url, :comments, :lyrics, :recorded_date, :release_id)
+      params.require(:track).permit(:title, :url, :comments, :lyrics, :recorded_date, :release_id, :embed_url)
     end
    
     def set_track

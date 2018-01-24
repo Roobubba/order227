@@ -31,13 +31,11 @@ Rails.application.routes.draw do
   resources :posts, except: [:show]
   resources :pictures, except: [:show]
   
-
-
   resources :shows
   resources :bands
   resources :venues, except: [:show]
   resources :videos
-  resources :releases, except: [:show]
+  resources :releases
   resources :release_types, except: [:show]
   resources :tracks
   

@@ -16,5 +16,17 @@ module ReleaseHelper
     end
   end
 
+  def bandcamp_link_track(track)
+    content_tag(:iframe, '', src: track.embed_url, style: "border: 0;", width: 300, height: 42, seamless: "") do
+      link_to(track.title + " by Order#227", track.url)
+    end
+  end
+
+  def get_lyrics_div(track)
+    ("<div class=\"hide collapse\" id=\"collapse" + track.id.to_s + "\">").html_safe
+  end
+
+
+
 
 end

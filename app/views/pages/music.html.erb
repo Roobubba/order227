@@ -2,7 +2,7 @@
   <% @releases.each do |release| %>
 		<div class="highlight-background music-container">
 			<div class="d-lg-flex flex-row main-text mb-3">
-				<%= link_to release_title_and_type(release) + " - " + release.release_date.to_formatted_s(:rfc822), release.url, class: "main-text-link" %>
+				<%= link_to release_title_and_type(release) + " - " + release.release_date.to_formatted_s(:rfc822), release_path(release), class: "main-text-link" %>
 			</div>
 			<% if release.url[0, 29] == "https://order227.bandcamp.com" %>
   			<div class="d-lg-flex flex-row">

@@ -6,7 +6,11 @@
       <p><strong>Date: </strong><%= format_date(@show.date) %></p>
       <p><strong>Bands: </strong>
         <% @show.bands.each do |band| %>
-          <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> 
+          <% if logged_in? and current_user.admin? %>
+            <%= link_to band.name, band_path(band), class: "main-text main-text-link" %> 
+          <% else %>
+            <%= link_to band.name, band.url, class: "main-text main-text-link" %>
+          <% end %>
           <% if band !=@show.bands.last %> / <% end %>
         <% end %>
       </p>

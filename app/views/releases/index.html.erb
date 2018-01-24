@@ -16,18 +16,20 @@
   <div class="row">
     <div class="col-lg-8">
       <section class="main-text">
-        <p><strong>Title: </strong><%= release.title + " (" + release.release_type.name + ")" %></p>
+        <p><strong>Title: </strong><%= link_to release_title_and_type(release), release_path(release), {class: "main-text-link"} %></p>
         <p><strong>Link: </strong><%= link_to release.url, release.url, {class: "main-text-link"} %></p>
         <p><strong>Released on: </strong><%= release.release_date.to_formatted_s(:rfc822) %></p>
         <p><strong>Comments: </strong><% if !release.comments? %>(No comments)<% else %><%= simple_format(release.comments) %><% end %></p>
       </section>
     </div>
-    <div class="col-6 col-lg-2 text-center align-self-center">
-      <%= link_to "EDIT", edit_release_path(release), class: "main-text main-text-header main-text-link" %>
-    </div>
-    <div class="col-6 col-lg-2 text-center align-self-center">
-      <%= link_to "DELETE", release, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the release: " + release.title } %>
-    </div>
+    <% if logged_in? and current_user.admin? %>
+      <div class="col-6 col-lg-2 text-center align-self-center">
+        <%= link_to "EDIT", edit_release_path(release), class: "main-text main-text-header main-text-link" %>
+      </div>
+      <div class="col-6 col-lg-2 text-center align-self-center">
+        <%= link_to "DELETE", release, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete the release: " + release.title } %>
+      </div>
+    <% end %>
   </div>
   <% if release != @releases.last %>
     <hr/>
