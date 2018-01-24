@@ -79,11 +79,6 @@
 
 <% @pastshows.each do |show| %>
   <div class="row">
-    <div class="col-3">
-      <section class="text-center mt-3">
-        <%= link_to image_tag(show.picture.picture.middle.url, {class: "img-thumbnail", alt_text: show.picture.alt_text}), show_path(show) %>
-      </section>
-    </div>
     <% if logged_in? and current_user.admin? %>
       <div class="col-8 col-lg-5">
     <% else %>
@@ -119,6 +114,11 @@
         <%= link_to "DELETE", show, method: :delete, class: "main-text main-text-header main-text-link", data: { confirm: "Are you sure you want to delete this show?" } %>
       </div>
     <% end %>
+    <div class="col-3">
+      <section class="text-center mt-3">
+        <%= link_to image_tag(show.picture.picture.middle.url, {class: "img-thumbnail", alt_text: show.picture.alt_text}), show_path(show) %>
+      </section>
+    </div>
   </div>
   <% if show != @pastshows.last %>
     <hr/>

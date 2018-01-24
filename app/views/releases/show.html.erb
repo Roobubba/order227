@@ -10,12 +10,13 @@
   </div>
 </div>
 
-
+<% if @tracks.length > 0 %>
 <div class="row">
   <div class="col text-center main-text main-text-header mb-2 mt-4">
       <% if @release.release_type.name != "Single" %>Tracks on <% end %><%= release_title_and_type(@release) %>:
   </div>
 </div>
+<% end %>
 
 
 <% @tracks.each do |track| %>
