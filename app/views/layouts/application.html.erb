@@ -37,3 +37,23 @@
   </body>
 	
 </html>
+
+<script type="text/javascript">
+
+function link_is_external(link_element) {
+  return (link_element.host !== window.location.host);
+}
+
+$(document).on('turbolinks:load', function() {
+
+  $('a').each(function() {
+      if (link_is_external(this)) {
+          $(this).attr("target", "_blank");
+          $(this).attr("rel", "noreferrer noopener");
+      }
+  });
+
+});
+
+
+</script>

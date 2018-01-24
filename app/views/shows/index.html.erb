@@ -19,8 +19,8 @@
 <% end %>
 <% @futureshows.each do |show| %>
   <div class="row">
-    <div class="col-3">
-      <section class="text-center mt-3">
+    <div class="col-3 align-self-center">
+      <section class="text-center">
         <%= link_to image_tag(show.picture.picture.middle.url, {class: "img-thumbnail", alt_text: show.picture.alt_text}), show_path(show) %>
       </section>
     </div>

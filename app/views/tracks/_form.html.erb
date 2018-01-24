@@ -36,7 +36,7 @@
       <%= f.label :release_id %>
     </div>
     <div class="col-sm-7 form-group">
-      <%= f.select :release_id, options_for_select(Release.all.order(:title).map{ |s| [s.title, s.id]}), {include_blank: "Select Release"}, { class: "form-control" } %>
+      <%= f.select :release_id, options_for_select(Release.all.order(:title).map{ |s| [s.title, s.id]}, @track.release_id), {include_blank: "Select Release"}, { class: "form-control" } %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@track.new_record? ? 'Create new Track' : 'Edit Track', class: "btn btn-default") %>
