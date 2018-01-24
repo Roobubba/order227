@@ -1,0 +1,35 @@
+<script type="text/javascript">
+
+function extractBandNames(i){
+  return  $("[data-band-name][value=\"" + i + "\"]").attr("data-band-name");
+}
+
+$('.band-selector').change(function(){
+  var value = $(this).val();
+  var band_panel = $('.bands-panel');
+  var output_str = "";
+  var bandnames_arr = new Array();
+  for (var i = 0, len = value.length; i < len; i++) {
+    bandnames_arr.push(extractBandNames(value[i]));
+  }
+  
+  if (bandnames_arr.length < 1){
+    output_str = "No bands selected";
+  }
+  else{
+    for (var i = 0, len = bandnames_arr.length; i < len; i++) {
+      if (i === len - 1) {
+        output_str += bandnames_arr[i];
+      }
+      else{
+        output_str += bandnames_arr[i] + " / ";
+      }
+    }
+  }
+  //var alt = $("[data-img-src][value=\"" + value + "\"]").attr("data-img-alt")
+  //var string = '<img class="img-thumbnail" src="' + x + '" alt="' + alt +'">';
+  
+  band_panel.html(output_str);      
+
+});
+</script>

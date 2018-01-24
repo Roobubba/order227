@@ -24,6 +24,18 @@
     </div>
 
     <div class="col-sm-5 form-group">
+      <p>Currently selected bands: </p>
+    </div>
+    <div class="col-sm-7 form-group bands-panel">
+      <%= list_bands(@show) %>
+    </div>
+    <div class="col-sm-5 form-group">
+      <%= f.label :band_ids, 'Bands' %>
+    </div> 
+    <div class="col-sm-7 form-group">
+      <%= f.select :band_ids, options_for_select(Band.all.map{ |s| [s.name, s.id, { "data-band-name" => s.name }]}, :selected => @show.band_ids), {}, {:multiple => true, class: "band-selector dropdown-options form-control" } %>
+    </div>
+    <div class="col-sm-5 form-group">
       <p>Currently selected picture: </p>
     </div>
     <div class="col-sm-7 form-group img-panel">
@@ -35,6 +47,8 @@
     <div class="col-sm-7 form-group">
       <%= f.select :picture_id, options_for_select(Picture.all.map{ |s| [s.alt_text, s.id, {"data-img-src" => s.picture.middle.url, "data-img-alt" => s.alt_text}] }, @show.picture_id), {include_blank: "No Picture (or select below)"}, {class: "picture-dropdown form-control dropdown-options" } %>
     </div>
+
+
   
     <div class="col-6 text-center mt-4 form-group">
       <%= f.submit(@show.new_record? ? 'Create new Show' : 'Edit Show', class: "btn btn-default") %>
@@ -50,3 +64,4 @@
 <hr/>
 
 <%= render 'shared/pictureselectorjs' %>
+<%= render 'shared/bandselectorjs' %>
