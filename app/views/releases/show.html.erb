@@ -1,0 +1,61 @@
+<%= render 'shared/page_title', title: release_title_and_type(@release) %>
+<div class="row mb-3">
+  <div class="col-11 offset-1">
+      <section class="main-text">
+        <p><strong>Title: </strong><%= release_title_and_type(@release) %></p>
+        <p><strong>Link: </strong><%= link_to @release.url, @release.url, {class: "main-text-link"} %></p>
+        <p><strong>Released on: </strong><%= @release.release_date.to_formatted_s(:rfc822) %></p>
+        <p><strong>Comments: </strong><% if !@release.comments? %>(No comments)<% else %><%= simple_format(@release.comments) %><% end %></p>
+      </section>        
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col text-center main-text main-text-header mb-2 mt-4">
+      <% if @release.release_type.name != "Single" %>Tracks on <% end %><%= release_title_and_type(@release) %>:
+  </div>
+</div>
+
+
+<% @release.tracks.each do |track| %>
+  <div class="row">
+    <div class="col main-text">
+      <% if track.embed_url? %>
+        <%= bandcamp_link_track(track) %>
+      <% else %>
+        <%= link_to track.title, track.url, {class: "main-text-link"} %>
+      <% end %>
+    </div>
+    <div class="col-12 col-xl-7 main-text">
+      <% if logged_in? and current_user.admin? %>
+        <%= link_to "EDIT TRACK - ", edit_track_path(track), {class: "main-text-link"} %>
+      <% end %> 
+      <%= link_to "Toggle Lyrics", "#collapse" + track.id.to_s, {class: "main-text-link", "data-toggle" => "collapse", "role" => "button", "aria-expanded" => "false", "aria-controls" => "collapse" + track.id.to_s } %>
+      <%= get_lyrics_div(track) %>
+      <%= simple_format(track.lyrics) %>
+      </div>
+
+    </div>
+  </div>
+<% end %>
+<hr/>
+
+<div class="row">
+  <% if logged_in? and current_user.admin? %>
+  <div class="col-4 text-center my-3">
+    <%= link_to "Back to Releases", releases_path, class: "main-text main-text-link" %>
+  </div>
+  <div class="col-4 text-center my-3">
+    <%= link_to "EDIT", edit_release_path(@release), class: "main-text main-text-link" %>
+  </div>
+  <div class="col-4 text-center my-3">
+    <%= link_to "DELETE " + @release.title, @release, method: :delete, class: "main-text main-text-link", data: { confirm: "Are you sure you want to delete the release: " + @release.title + "?" } %>
+  </div>
+  <% else %>
+    <div class="col-12 text-center my-3">
+      <%= link_to "Back to Music", music_path, class: "main-text main-text-link" %>
+    </div>
+  <% end %>
+</div>
+<hr/>
