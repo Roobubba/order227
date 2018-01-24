@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,7 +9,6 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-
 gem 'puma', '~> 3.7'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'jquery-rails'
@@ -18,8 +18,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.11'
-gem 'carrierwave-aws'
-#gem 'fog-aws'
+gem 'carrierwave-aws', '~> 1.3.0'
 gem 'mini_magick'
 
 # Use Capistrano for deployment
