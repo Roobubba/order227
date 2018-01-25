@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     self.email_confirmed = true
     self.confirm_token = nil
     save!(:validate => false)
+    UserMailer.welcome_message(self).deliver_now
   end
   
   def send_password_reset

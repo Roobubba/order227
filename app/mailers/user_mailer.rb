@@ -12,4 +12,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{user.username} <#{user.email}>", :subject => "Password Reset")
   end  
   
+  def welcome_message(user)
+    @user = user
+    mail(:to => "#{user.username} <#{user.email}>", :subject => "Order#227 Mailing List registration successful")
+  end
+  
 end
