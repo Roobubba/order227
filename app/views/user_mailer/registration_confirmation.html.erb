@@ -6,8 +6,9 @@
   <body>
     <h1>Thank you for signing up to the Order#227 Mailing List, <%= @user.username %></h1>
     <p>
-      Your registration is not complete until you confirm at the link below:
-      <%= confirm_email_user_url(@user.confirm_token) %>
+      Your registration is not complete until you confirm at the link below: </p><br>
+      <p>
+        <%= confirm_email_user_url(@user.confirm_token) %>
       <br>
     </p>
     <p>

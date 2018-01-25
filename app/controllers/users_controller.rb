@@ -70,7 +70,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the Order#227 Mailing List! Registration confirmed. Please sign in to continue."
       redirect_to login_path
     else
-      flash[:error] = "Sorry, user does not exist"
+      flash[:danger] = "Sorry, user does not exist"
       redirect_to root_path
     end
   end
