@@ -61,12 +61,12 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "order227_#{Rails.env}"
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = {:host => "order227.co.uk"}
+  config.action_mailer.default_url_options = {:host => "order227.herokuapp.com"}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'order227.co.uk',
+    domain:               'order227.herokuapp.com',
     user_name:            ENV['GOOGLE_NAME'],
     password:             ENV['GOOGLE_SECRET'],
     authentication:       'plain',
