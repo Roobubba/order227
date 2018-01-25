@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124191815) do
+ActiveRecord::Schema.define(version: 20180125144133) do
 
   create_table "band_shows", force: :cascade do |t|
     t.integer "band_id"
@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 20180124191815) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
     t.string "password_digest"
+    t.boolean "email_confirmed", default: false
+    t.string "confirm_token"
+    t.string "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "venues", force: :cascade do |t|

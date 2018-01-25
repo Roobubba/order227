@@ -1,9 +1,12 @@
 <%= render 'shared/page_title', title: "Log in" %>
 
 <div class="row">
-  <div class="col text-center">
+  <div class="col-12 text-center">
     <%= link_to "No account? Register here to subscribe to the mailing list", register_path, class: "main-text main-text-link" %>
   </div>
+  <div class="col-12 text-center">
+    <%= link_to "Forgot Password? Click here to reset", new_password_reset_path, class: "main-text main-text-link" %>
+  </div>  
 </div>
 <hr/>
 

@@ -1,0 +1,23 @@
+<%= render 'shared/page_title', title: "Reset Password" %>
+
+<%= render 'shared/errors', obj: @user %> 
+
+<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+  <div class="row main-text">  
+    <div class="col-sm-5 form-group">
+      <%= f.label :password %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.password_field :password, class: "form-control" %>
+    </div>      
+    <div class="col-sm-5 form-group">
+      <%= f.label :password_confirmation %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
+  </div>
+  <div class="actions text-center"><%= f.submit "Update Password", {class: "btn btn-default"} %></div>
+
+<% end %>
+

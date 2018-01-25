@@ -18,15 +18,21 @@ Rails.application.routes.draw do
   #get '/users/:id', to: 'users#show', as: 'user'
   #delete '/users/:id', to: 'users#destroy'
   
-  resources :users, except: [:new]
+  resources :users, except: [:new] do
+    member do
+      get :confirm_email
+    end
+  end
+  
+  resources :password_resets, except: [:show, :index]
 
   get '/register', to: 'users#new'
-  
   get '/login', to: 'logins#new'
   post '/login', to: 'logins#create'
   get '/logout', to: 'logins#destroy'
   get '/home', to: 'posts#home'
   get '/dlemail', to: 'users#download_all_emails'
+  
   
   resources :posts, except: [:show]
   resources :pictures, except: [:show]

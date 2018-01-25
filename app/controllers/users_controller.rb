@@ -24,12 +24,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = "Profile created successfully"
+      UserMailer.registration_confirmation(@user).deliver_now
+      flash[:success] = "Please confirm your email address to continue"
       
       if logged_in? && current_user.admin?
         redirect_to users_path and return
       end
-      session[:user_id] = @user.id
+
+      #session[:user_id] = @user.id
       redirect_to root_path
     else
       render 'new'
@@ -59,6 +61,18 @@ class UsersController < ApplicationController
   def download_all_emails
     emails = User.email_list
     send_data emails, type: 'application/octet-stream', filename: Date.today.to_s + '_o227mail.txt', :disposition => 'attachment'
+  end
+
+  def confirm_email
+    user = User.find_by :confirm_token => params[:id]
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the Order#227 Mailing List! Registration confirmed. Please sign in to continue."
+      redirect_to login_path
+    else
+      flash[:error] = "Sorry, user does not exist"
+      redirect_to root_path
+    end
   end
 
   private
