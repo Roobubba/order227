@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
     list = String.new
     list << "REMEMBER - ONLY USE THESE ADDRESSES IN THE BCC FIELD!\nDO NOT PASTE INTO TO: or CC: FIELDS!\n\n"
     User.all.each do |user|
-      list << user.email + ",\n"
+      if user.email_confirmed
+        list << user.email + ",\n"
+      end
     end
     list
   end
