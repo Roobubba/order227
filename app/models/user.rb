@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
 
-  def updated_password
+  def delete_password_token
     self.password_reset_token = nil
     self.password_reset_sent_at = nil
     save!(:validate => false)
