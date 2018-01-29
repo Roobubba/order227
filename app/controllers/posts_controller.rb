@@ -122,7 +122,7 @@ class PostsController < ApplicationController
         tweet += "\n" + post_url(obj)
       end
       
-      twitter.update(tweet)
+        twitter.update(tweet)
     end
     
     
