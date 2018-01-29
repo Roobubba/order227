@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'pages#contact', as: 'contact'
   get '/siteadmin', to: 'pages#siteadmin', as: 'siteadmin'
 
+  get '/privacy', to: 'pages#privacy', as: 'privacy'
   #get '/users', to: 'users#index'
   #get '/users/new', to: 'users#new', as: 'sign_up'
   #post '/users', to: 'users#create'
