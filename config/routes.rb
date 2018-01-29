@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get '/dlemail', to: 'users#download_all_emails'
   
   
-  resources :posts, except: [:show]
+  resources :posts
   resources :pictures, except: [:show]
   
   resources :shows

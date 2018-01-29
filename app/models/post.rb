@@ -9,5 +9,5 @@ class Post < ActiveRecord::Base
 
   scope :pinned, -> { where(pinned: true) }
   
-  
+
 end

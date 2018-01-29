@@ -1,0 +1,29 @@
+<script type="text/javascript">
+  var hidden = $('#post_fb_post:hidden');
+  var checkbox = $('.fb-post-checkbox');
+  var button = $('.fb-post-reset');
+  var fb_post_value = hidden.val();
+  if (fb_post_value === "2"){
+    checkbox.prop("checked", true);
+    checkbox.prop("disabled", true);
+    $('.fb-post-label').text("Already posted to Facebook");
+    button.show();
+    button.click(function(){
+      $('.fb-post-label').text("Post to Facebook?");
+      checkbox.prop("checked", true);
+      checkbox.prop("disabled", false);
+      button.hide();
+    });
+  }
+  else if(fb_post_value === "1"){
+    checkbox.prop("checked", true);
+  }
+  checkbox.bind('change', function(e){
+    if (checkbox.prop("checked") === true){
+       hidden.val("1");
+    }
+    else{
+       hidden.val("0");
+    }
+  });
+</script>

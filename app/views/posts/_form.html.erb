@@ -20,6 +20,14 @@
     <div class="col-sm-7 form-group">
       <%= f.check_box :pinned, class: "big-checkbox form-control" %>
     </div>
+    <div class="col-sm-5 form-group">
+      <%= f.label :fb_post, 'Post to Facebook?', {class: "fb-post-label"} %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <input type="checkbox" class="big-checkbox fb-post-checkbox form-control float-left">
+      <input type="button" class="btn btn-default fb-post-reset float-right hide collapse" value="Re-enable FB-post checkbox">
+      <%= f.hidden_field :fb_post, class: "fb-post-hidden" %>
+    </div>
     
     <div class="col-sm-5 form-group">
       <p>Currently selected picture: </p>
@@ -51,3 +59,4 @@
 <hr/>
 
 <%= render 'shared/pictureselectorjs' %>
+<%= render 'facebook_post_js' %>

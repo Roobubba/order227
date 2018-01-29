@@ -23,4 +23,7 @@ class PagesController < ApplicationController
   def siteadmin
   end
   
+  def privacy
+  end
+  
 end
