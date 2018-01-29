@@ -1,29 +1,66 @@
 <script type="text/javascript">
-  var hidden = $('#post_fb_post:hidden');
-  var checkbox = $('.fb-post-checkbox');
-  var button = $('.fb-post-reset');
-  var fb_post_value = hidden.val();
+  var fb_hidden = $('#post_fb_post:hidden');
+  var fb_checkbox = $('.fb-post-checkbox');
+  var fb_button = $('.fb-post-reset');
+  var fb_post_value = fb_hidden.val();
+  
+  var tw_hidden = $('#post_tw_post:hidden');
+  var tw_checkbox = $('.tw-post-checkbox');
+  var tw_button = $('.tw-post-reset');
+  var tw_post_value = tw_hidden.val();
+  
   if (fb_post_value === "2"){
-    checkbox.prop("checked", true);
-    checkbox.prop("disabled", true);
+    fb_checkbox.prop("checked", true);
+    fb_checkbox.prop("disabled", true);
     $('.fb-post-label').text("Already posted to Facebook");
-    button.show();
-    button.click(function(){
-      $('.fb-post-label').text("Post to Facebook?");
-      checkbox.prop("checked", true);
-      checkbox.prop("disabled", false);
-      button.hide();
+    fb_button.show();
+    fb_button.click(function(){
+      $('.fb-post-label').text("Re-post to Facebook?");
+      fb_hidden.val("1");
+      fb_checkbox.prop("checked", true);
+      fb_checkbox.prop("disabled", false);
+      fb_button.hide();
     });
   }
   else if(fb_post_value === "1"){
-    checkbox.prop("checked", true);
+    fb_checkbox.prop("checked", true);
   }
-  checkbox.bind('change', function(e){
-    if (checkbox.prop("checked") === true){
-       hidden.val("1");
+  
+  if (tw_post_value === "2"){
+    tw_checkbox.prop("checked", true);
+    tw_checkbox.prop("disabled", true);
+    $('.tw-post-label').text("Already posted to Twitter");
+    tw_button.show();
+    tw_button.click(function(){
+      $('.tw-post-label').text("Re-post to Twitter?");
+      tw_hidden.val("1");
+      tw_checkbox.prop("checked", true);
+      tw_checkbox.prop("disabled", false);
+      tw_button.hide();
+    });
+  }
+  else if(tw_post_value === "1"){
+    tw_checkbox.prop("checked", true);
+  }
+
+
+  fb_checkbox.bind('change', function(e){
+    if (fb_checkbox.prop("checked") === true){
+       fb_hidden.val("1");
     }
     else{
-       hidden.val("0");
+       fb_hidden.val("0");
     }
   });
+  tw_checkbox.bind('change', function(e){
+    if (tw_checkbox.prop("checked") === true){
+       tw_hidden.val("1");
+    }
+    else{
+       tw_hidden.val("0");
+    }
+  });
+  
+  
+  
 </script>

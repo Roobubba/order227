@@ -21,6 +21,7 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'carrierwave-aws', '~> 1.3.0'
 gem 'mini_magick'
 gem 'koala'
+gem 'twitter'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -27,18 +27,28 @@ class PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
+    
     if @post.save
+      fb_message = ""
+      tw_message = ""
       if @post.fb_post == 1
-        message = post_to_fb(@post) 
-        if message == 'Article Posted'
-          message = " and posted to Facebook"
+        fb_message = post_to_fb(@post) 
+        if fb_message == 'Article Posted'
+          fb_message = " and posted to Facebook"
           @post.fb_post = 2
-          @post.save!
+          @post.save
         else
-          message = " BUT error from FB: \n" + message          
+          fb_message = " BUT error from FB: \n" + fb_message          
         end
-        flash[:success] = "Post created successfully" + message
       end
+      if @post.tw_post == 1
+        post_to_tw(@post)
+        @post.tw_post = 2
+        @post.save
+        tw_message = " and posted to Twitter"
+      end
+
+      flash[:success] = "Post created successfully" + fb_message + tw_message
       redirect_to posts_path
     else
       render 'new'
@@ -46,18 +56,35 @@ class PostsController < ApplicationController
   end
   
   def update
-    if @post.update(post_params)
+    fb_message = ""
+    tw_message = ""
+    updated_params = post_params
+    if @post.fb_post == 2 && updated_params[:fb_post] == 0
+      updated_params[:fb_post] = 2
+    end
+    if @post.tw_post == 2 && updated_params[:tw_post] == 0
+      updated_params[:tw_post] = 2
+    end
+    
+      
+    if @post.update(updated_params)
       if @post.fb_post == 1
-        message = post_to_fb(@post) 
-        if message == 'Article Posted'
-          message = " and posted to Facebook"
+        fb_message = post_to_fb(@post) 
+        if fb_message == 'Article Posted'
+          fb_message = " and posted to Facebook"
           @post.fb_post = 2
           @post.save!
         else
-          message = " BUT error from FB: \n" + message          
+          fb_message = " BUT error from FB: \n" + fb_message          
         end
-        flash[:success] = "Post updated successfully" + message
       end
+      if @post.tw_post == 1
+        post_to_tw(@post)
+        @post.tw_post = 2
+        @post.save!
+        tw_message = " and posted to Twitter"
+      end
+      flash[:success] = "Post updated successfully" + fb_message + tw_message
       redirect_to posts_path
     else
       render 'edit'
@@ -78,6 +105,26 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
+    
+    def post_to_tw(obj)
+      twitter = Twitter::REST::Client.new do |config|
+        config.consumer_key = ENV['TW_CONSUMER_KEY']
+        config.consumer_secret = ENV['TW_CONSUMER_SECRET']
+        config.access_token = ENV['TW_YOUR_ACCESS_TOKEN']
+        config.access_token_secret = ENV['TW_YOUR_ACCESS_SECRET']
+      end
+      
+      
+      tweet = obj.title + "\n\n" + obj.post_text
+      if tweet.length > 100
+        tweet = tweet[0,90] + "...\n" + post_url(obj)
+      else
+        tweet += "\n" + post_url(obj)
+      end
+      
+      twitter.update(tweet)
+    end
+    
     
     def post_to_fb(obj)
       

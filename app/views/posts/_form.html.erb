@@ -28,6 +28,15 @@
       <input type="button" class="btn btn-default fb-post-reset float-right hide collapse" value="Re-enable FB-post checkbox">
       <%= f.hidden_field :fb_post, class: "fb-post-hidden" %>
     </div>
+        <div class="col-sm-5 form-group">
+      <%= f.label :tw_post, 'Post to Twitter?', {class: "tw-post-label"} %>
+    </div>
+    <div class="col-sm-7 form-group">
+      <input type="checkbox" class="big-checkbox tw-post-checkbox form-control float-left">
+      <input type="button" class="btn btn-default tw-post-reset float-right hide collapse" value="Re-enable TW-post checkbox">
+      <%= f.hidden_field :tw_post, class: "tw-post-hidden" %>
+    </div>
+    
     
     <div class="col-sm-5 form-group">
       <p>Currently selected picture: </p>
