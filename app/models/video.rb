@@ -6,4 +6,6 @@ class Video < ActiveRecord::Base
   validates :url, presence: true, length: { minimum: 1, maximum: 200 }
   validates :date, presence: true
 
+  default_scope { order('date DESC') }
+  
 end
