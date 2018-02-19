@@ -58,7 +58,7 @@
       <%= f.url_field :picture_url, class: "form-control" %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
-      <%= f.submit(@post.new_record? ? 'Create new Post' : 'Edit Post', class: "btn btn-default") %>
+      <%= f.submit(@post.new_record? ? 'Create new Post' : 'Edit Post', class: "btn btn-default form-button") %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>

@@ -33,7 +33,7 @@
       <%= f.text_field :contact_detail, class: "form-control" %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
-      <%= f.submit(@venue.new_record? ? 'Create new Venue' : 'Edit Venue', class: "btn btn-default") %>
+      <%= f.submit(@venue.new_record? ? 'Create new Venue' : 'Edit Venue', class: "btn btn-default form-button") %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>

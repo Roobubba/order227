@@ -27,7 +27,7 @@
       <%= f.url_field :url, class: "form-control" %>
     </div>   
     <div class="col-6 text-center mt-4 form-group">
-      <%= f.submit(@band.new_record? ? 'Create new Band' : 'Edit Band Profile', class: "btn btn-default") %>
+      <%= f.submit(@band.new_record? ? 'Create new Band' : 'Edit Band Profile', class: "btn btn-default form-button") %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>

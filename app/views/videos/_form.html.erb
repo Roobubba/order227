@@ -33,7 +33,7 @@
       <%= f.select :venue_id, options_for_select(Venue.all.order(:name).map{ |s| [display_venue(s), s.id]}), {include_blank: "Leave Blank (or select below)"}, { class: "form-control" } %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
-      <%= f.submit(@video.new_record? ? 'Create new Video' : 'Edit Video', class: "btn btn-default") %>
+      <%= f.submit(@video.new_record? ? 'Create new Video' : 'Edit Video', class: "btn btn-default form-button") %>
     </div>
     <div class="col-6 text-center mt-4 form-group">
       <button class="btn btn-default"><%= link_to "Cancel", :back, class: "form-button" %></button>
